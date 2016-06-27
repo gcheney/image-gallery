@@ -23,8 +23,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // GET: /
 app.get("/", function(req, res){
-   res.render("home");
+   res.render("home", { title: "The Image Link Gallery" });
 });
+
+
 
 // *********** ERROR HANDLERS ********************** //
 
@@ -57,7 +59,11 @@ app.use(function(err, req, res, next) {
   });
 });
 
-//app listen 
+// *********** LISTEN ********************** //
+
 app.listen(3000, function(req, res){
-   console.log("App server is listening on port 3000"); 
+    console.log("App server is listening on port 3000"); 
+    if (app.get('env') === 'development') {
+        console.log("http://127.0.0.1:3000");
+    }
 });
