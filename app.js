@@ -21,6 +21,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // *********** ROUTES ********************** //
 
+//Mock image data
+
+var images = [
+    { url: "http://i.imgur.com/qK42fUu.jpg"}
+];
+
 // GET: /
 app.get("/", function(req, res){
    res.render("home", { title: "The Image Link Gallery" });
