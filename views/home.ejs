@@ -16,53 +16,15 @@
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail crop">
-              <a href="#"><img class="image" src="http://i.imgur.com/qK42fUu.jpg"></a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail crop">
-                <a href="#">
-                    <img class="image" src="https://images.unsplash.com/photo-1435771112039-1e5b2bcad966">
-                </a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail crop">
-              <a href="#"><img class="image" src="https://images.unsplash.com/photo-1442406964439-e46ab8eff7c4"></a>
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail crop">
-              <img src="http://www.freedigitalphotos.net/images/img/homepage/87357.jpg">
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail crop">
-              <img src="https://images.unsplash.com/photo-1444090542259-0af8fa96557e">
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail crop">
-              <img src="https://images.unsplash.com/photo-1434543177303-ef2cc7707e0d">
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail crop">
-              <img src="https://images.unsplash.com/photo-1436262513933-a0b06755c784">
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail crop">
-              <img src="https://images.unsplash.com/photo-1439396087961-98bc12c21176">
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail crop">
-              <img src="https://images.unsplash.com/photo-1439694458393-78ecf14da7f9">
-            </div>
-          </div>
+            <% images.forEach(function(image) { %>
+              <div class="col-lg-4 col-sm-6">
+                <div class="thumbnail crop">
+                    <a href="<%= image.url %>">
+                        <img class="image" src="<%= image.url %>">
+                    </a>
+                </div>
+              </div>
+            <% }); %>
         </div>
     </div>
 
