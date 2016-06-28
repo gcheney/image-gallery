@@ -1,24 +1,36 @@
 body { 
-  padding-top: 70px; 
+    padding-top: 70px; 
+}
+
+hr {
+    border: none;
+    height: 1px;
+    color: #333;
+    background-color: #333; 
 }
 
 .jumbotron {
-  color: #2c3e50;
-  background: #ecf0f1;
+    color: #2c3e50;
+    background: #ecf0f1;
 }
 
 .navbar-inverse {
-  background: #2c3e50;
-  color: white;
+    background: #2c3e50;
+    color: white;
 }
 
 .navbar-inverse .navbar-brand, .navbar-inverse a{
-  color: white;
+    color: white;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: white;
+    color: white;
+    border-bottom: 5px solid #2c3e50;
 } 
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    border-bottom: 5px solid #cece39;
+}
 
 .crop > a > img {
     width: 400px;
@@ -29,9 +41,9 @@ body {
 .image {
     position: relative;
     -webkit-transition: all .4s ease-in-out;
-	-moz-transition: all .4s ease-in-out;
-	-o-transition: all .4s ease-in-out;
-	-ms-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
 }
 
 .transition {
