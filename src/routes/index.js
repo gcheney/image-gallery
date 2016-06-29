@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var homeController = require('../controllers/home');
-var imageController = require('../controllers/images');
+var imageController = require('../controllers/image');
 
 
 /* Home Pages */
@@ -10,7 +10,7 @@ router.get('/about', homeController.about);
 router.get('/contact', homeController.contact);
 
 /* Image pages */
-router.get('/images/view', imageController.view);
-router.get('/images/new', imageController.add);
+router.get('/image/view', imageController.view);
+router.get('/image/new', imageController.add);
 
 module.exports = router;

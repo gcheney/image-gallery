@@ -1,6 +1,6 @@
 /* GET '/images/view' */
 module.exports.view = function(req, res) {
-    res.render('images/view', { 
+    res.render('image/view', { 
         title: 'View Image',
         image: {
             url: "http://i.imgur.com/qK42fUu.jpg",
@@ -12,5 +12,5 @@ module.exports.view = function(req, res) {
 
 /* GET '/images/add' */
 module.exports.add = function(req, res) {
-    res.render('images/new', { title: 'Add a New Image'});
+    res.render('image/new', { title: 'Add a New Image'});
 };
