@@ -5,5 +5,5 @@ module.exports.view = function(req, res) {
 
 /* GET '/images/add' */
 module.exports.add = function(req, res) {
-    res.render('images/add', { title: 'Add Image' });
+    res.render('images/new', { title: 'Add a New Image' });
 };

@@ -6,7 +6,20 @@
 <body>
 	<% include ../partials/navbar %>
 
-    <h1>View</h1>
+    <div class="container">
+        <div class="row">
+            <div class="thumbnail">
+                <a href="<%= image.url %>">
+                    <img class="img-responsive" src="<%= image.url %>">
+                </a>
+                <div class="caption-full">
+                    <h4><%= image.name %></h4>
+                    <p><%= image.description %></p>
+                    <p><em>Submitted By: Placeholder User</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <% include ../partials/footer %>
     <% include ../partials/scripts %>

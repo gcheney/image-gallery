@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+    <% include ../partials/head %>
+    
+<body>
+	<% include ../partials/navbar %>
+
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Add a New Image</h1>
+            <div class="form">
+                <form action="/campgrounds" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="name" placeholder="Image Name">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="image" placeholder="Image URL">
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Optinal Description:</label>
+                      <textarea class="form-control" rows="5" name="description" id="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Add Image</button>
+                    </div>
+                </form>
+                <a href="/campgrounds">Go Back</a>
+            </div>
+        </div>
+    </div>
+
+    <% include ../partials/footer %>
+    <% include ../partials/scripts %>
+</body>
+</html>
+

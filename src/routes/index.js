@@ -11,6 +11,6 @@ router.get('/contact', homeController.contact);
 
 /* Image pages */
 router.get('/images/view', imageController.view);
-router.get('/images/add', imageController.add);
+router.get('/images/new', imageController.add);
 
 module.exports = router;
