@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var gracefulShutdown;
 var dbURI = 'mongodb://localhost/image-link-gallery';
 
 mongoose.connect(dbURI);
@@ -15,7 +14,7 @@ mongoose.connection.on('disconnected', function () {
     console.log('Mongoose disconnected');
 });
 
-gracefulShutdown = function (msg, callback) {
+var gracefulShutdown = function (msg, callback) {
     mongoose.connection.close(function () {
         console.log('Mongoose disconnected through ' + msg);
         callback();
