@@ -1,11 +1,12 @@
 // initialize app
-var express = require("express");
+var express = require('express');
 var app = express();
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require("body-parser");
+var bodyParser = require('body-parser');
 var routes = require('./src/routes/index');
+require('./src/models/db');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src', 'views'));
