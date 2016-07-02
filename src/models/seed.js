@@ -23,7 +23,7 @@ var images = [
         { 
             url: "http://www.freedigitalphotos.net/images/img/homepage/87357.jpg",
             title: "Ducks", 
-            description: "Awww baby ducks",
+            description: "Awww baby ducks. So cute.",
             isPublic: true
         },
         { 
@@ -57,7 +57,7 @@ var images = [
         },
         { 
             url: "https://images.unsplash.com/photo-1467392952473-8e2e1528c533", 
-            title: "FLower Blossums", 
+            title: "Flower Blossums", 
             isPublic: false
         }
     ];
@@ -66,18 +66,18 @@ var images = [
 function seedDB(){
     //remove all images in the DB
     Image.remove({}, function(err){
-        if(err) {
+        if (err) {
             console.log(err);
         } else {
             console.log("Removed current images.");        
             //Add new images to the DB
-            images.forEach(function(imageData){
-                Image.create(imageData, function(err, campground){
+            images.forEach(function(image){
+                Image.create(image, function(err, addedImage){
                     if (err) {
                         console.log(err);
                     } else {
-                        console.log("Add a new campground to the DB:");
-                        console.log(imageData);                       
+                        console.log("Added a new image to the DB:");
+                        console.log(addedImage);                       
                     }
                 });
             });
