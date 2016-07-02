@@ -10,7 +10,7 @@
         <div class="row">
             <h1 class="text-center">Add a New Image</h1>
             <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-                <form action="/campgrounds" method="POST">
+                <form action="/images" method="POST">
                     <div class="form-group">
                         <input class="form-control" type="text" name="name" placeholder="Image Name">
                     </div>
@@ -20,6 +20,9 @@
                     <div class="form-group">
                       <label for="description">Optinal Description:</label>
                       <textarea class="form-control" rows="5" name="description" id="description"></textarea>
+                    </div>
+                    <div class="checkbox">
+                        <label for="isPublic"><input type="checkbox" value="isPublic">Make publicly visible?</label>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Add Image</button>

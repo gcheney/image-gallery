@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
-require('./image');
+var seedDB = require('./seed')
 var dbURI = 'mongodb://localhost/image-link-gallery';
 
 mongoose.connect(dbURI);
 mongoose.connection.on('connected', function () {
     console.log('Mongoose connected to ' + dbURI);
+    seedDB();
 });
 
 mongoose.connection.on('error',function (err) {
