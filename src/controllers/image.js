@@ -5,7 +5,8 @@ module.exports.view = function(req, res) {
         image: {
             url: "http://i.imgur.com/qK42fUu.jpg",
             title: "Golden Gate",
-            description: "The Golden Gate Bridge at night"
+            description: "The Golden Gate Bridge at night",
+            isPublic: true
         }
     });
 };

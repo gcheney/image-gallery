@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+require('./image');
 var dbURI = 'mongodb://localhost/image-link-gallery';
 
 mongoose.connect(dbURI);

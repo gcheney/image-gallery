@@ -17,13 +17,15 @@
 
         <div class="row">
             <% images.forEach(function(image) { %>
-              <div class="col-lg-4 col-sm-6">
-                <div class="thumbnail crop">
-                    <a href="/image/view">
-                        <img class="image" src="<%= image.url %>">
-                    </a>
-                </div>
-              </div>
+                <% if (image.isPublic === true) { %>
+                  <div class="col-lg-4 col-sm-6">
+                    <div class="thumbnail crop">
+                        <a href="/image/view">
+                            <img class="image" src="<%= image.url %>">
+                        </a>
+                    </div>
+                  </div>
+                <% } &>
             <% }); %>
         </div>
     </div>

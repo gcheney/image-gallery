@@ -6,7 +6,7 @@ var accountController = require('../controllers/account')
 
 
 /* Home */
-router.get('/', homeController.homeList);
+router.get('/', homeController.index);
 router.get('/about', homeController.about);
 router.get('/contact', homeController.contact);
 
