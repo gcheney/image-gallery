@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./src/routes/index');
+var api = require('./api/routes/index');
 require('./src/models/db');
 
 // view engine setup
@@ -18,9 +19,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-var PORT = process.env.PORT || 3000;
-app.use('/', routes);
 
+// set app port
+var PORT = process.env.PORT || 3000;
+
+// app routes
+app.use('/', routes);
+app.use('/api', api);
 
 
 // *********** ERROR HANDLERS ********************** //
