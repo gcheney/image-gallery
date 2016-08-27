@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    //add image tranition on hover
+    //add image transition on hover
     $('.image').hover(function() {
         $(this).addClass('transition');  
     }, function() {
