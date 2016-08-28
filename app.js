@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./src/routes/index');
 var api = require('./api/routes/index');
-require('./src/models/db');
+require('./api/models/db');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src', 'views'));
