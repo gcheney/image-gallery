@@ -18,11 +18,10 @@
         <div class="row">
             <% images.forEach(function(image) { %>
                 <% if (image.isPublic === true) { %>
-                  <div class="col-lg-4 col-sm-6">
+                  <div class="col-md-4 col-sm-6">
                     <div class="thumbnail crop">
-                        <a href="/image/view">
-                            <img class="image" src="<%= image.url %>">
-                        </a>
+                        <a href="/image/view"><img class="image" src="<%= image.url %>"></a>
+                        <span class="project-details"><a href="/image/view">Custom Illustration</a>For an international add campaign.</span>
                     </div>
                   </div>
                 <% } %>
