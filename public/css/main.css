@@ -54,7 +54,7 @@ hr {
     overflow: hidden;
 }
 
-.project-details {
+.image-details {
 	background:#f8f8f8;
 	display: block;
 	padding:10px;
@@ -65,7 +65,7 @@ hr {
     height: auto;
     max-width: 100%;
 }
-.project-details a {
+.image-details a {
 	margin: 0px; 
     color: #333333;
 	font-size: 12px; 
@@ -77,22 +77,22 @@ hr {
 	text-transform:uppercase; 
 }
 
-.project-details a:hover {
+.image-details a:hover {
     color:#d8450b; 
     text-decoration: none;
 }
 
-.project-info {
+.image-info {
     margin: 0px 0px 40px 0px;
 }
 
-.project-info li { 
+.image-info li { 
 	list-style: none; 
 	border-bottom: 1px dashed #a9a9a9;;
 	padding: 10px; 
 }
 
-.project-info li h6 {
+.image-info li h6 {
     display: inline; margin-right: 5px;
 }
 
@@ -109,4 +109,8 @@ hr {
     -moz-transform: scale(1.1);
     -o-transform: scale(1.1);
     transform: scale(1.1);
+}
+
+.website-link {
+    color: firebrick;
 }
