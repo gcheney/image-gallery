@@ -48,21 +48,6 @@ hr {
     border-bottom: 5px solid #cece39;
 }
 
-
-.image:after {
-    color:#fff;
-    position:absolute;
-    width:100%; height:100%;
-    top:0; left:0;
-    background:rgba(0,0,0,0.6);
-    opacity:0;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-}
-.image:hover:after {
-    opacity:1;
-}
-
 .image-details {
 	background:#f8f8f8;
 	display: block;
@@ -113,14 +98,12 @@ hr {
     margin-top: 4em;
 }
 
-
 .image-wrap:hover .image-overlay {
     visibility: visible;
     opacity: 1;
 }
 
 .thumbnail {
-    position: relative;
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;

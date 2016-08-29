@@ -16,19 +16,19 @@
         <div class="row">
             <% images.forEach(function(image) { %>
                 <% if (image.isPublic === true) { %>
-                  <div class="col-md-4 col-sm-6">
+                  <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="thumbnail">
                         <div class="image-wrap">
                             <a href="/image/view">
-                                <img class="image" src="<%= image.url %>">
+                                <img src="<%= image.url %>">
+                                <div class="image-overlay">
+                                    <h3 class="overlay-content">
+                                        <i class="fa fa-comment" aria-hidden="true"></i> 27
+                                        &nbsp;
+                                        <i class="fa fa-heart" aria-hidden="true"></i> 12
+                                    </h3>
+                                </div>
                             </a>
-                            <div class="image-overlay">
-                                <h3 class="overlay-content">
-                                    <i class="fa fa-comment" aria-hidden="true"></i> 27
-                                    &nbsp;
-                                    <i class="fa fa-heart" aria-hidden="true"></i> 12
-                                </h3>
-                            </div>
                         </div>
                         <span class="image-details"><a href="/image/view"><%= image.title %></a><%= image.lead %></span>
                     </div>
