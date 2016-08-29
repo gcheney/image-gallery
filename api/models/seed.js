@@ -21,12 +21,6 @@ var images = [
             isPublic: true
         },
         { 
-            url: "http://www.freedigitalphotos.net/images/img/homepage/87357.jpg",
-            title: "Ducks", 
-            lead: "Awww baby ducks. So cute.",
-            isPublic: true
-        },
-        { 
             url: "https://images.unsplash.com/photo-1444090542259-0af8fa96557e?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450", 
             title: "Clouds", 
             lead: "Clouds at sunset",
@@ -77,12 +71,6 @@ var images = [
             url: "https://images.unsplash.com/photo-1442406964439-e46ab8eff7c4?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450", 
             title: "Escher", 
             lead: "Is this an Escher painting?",
-            isPublic: true
-        },
-        { 
-            url: "http://www.freedigitalphotos.net/images/img/homepage/87357.jpg",
-            title: "Ducks", 
-            lead: "Awww baby ducks. So cute.",
             isPublic: true
         },
         { 
