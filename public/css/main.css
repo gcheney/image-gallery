@@ -1,3 +1,5 @@
+/* General */
+
 html {
     position: relative;
     min-height: 100%;
@@ -30,6 +32,8 @@ hr {
     background: #ecf0f1;
 }
 
+/* Navbar */
+
 .navbar-inverse {
     background: #2c3e50;
     color: white;
@@ -47,6 +51,8 @@ hr {
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     border-bottom: 5px solid #cece39;
 }
+
+/* Images and overlay */
 
 .image-details {
 	background:#f8f8f8;
@@ -95,7 +101,7 @@ hr {
 }
 
 .overlay-content {
-    margin-top: 4em;
+    margin: 4em;
 }
 
 .image-wrap:hover .image-overlay {
@@ -116,6 +122,8 @@ hr {
     -o-transform: scale(1.1);
     transform: scale(1.1);
 }
+
+/* Misc */
 
 .website-link {
     color: firebrick;
