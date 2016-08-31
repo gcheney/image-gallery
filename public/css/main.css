@@ -49,10 +49,21 @@ hr {
 } 
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    border-bottom: 5px solid #cece39;
+    border-bottom: 5px solid #ffffff;
+}
+
+/* Buttons */
+
+.btn-gallery {
+    margin-bottom: 30px;
 }
 
 /* Images and overlay */
+
+.avatar {
+    width: 5.0em;
+    height: 5.0em;
+}
 
 .image-details {
 	background:#f8f8f8;
@@ -100,6 +111,10 @@ hr {
     -webkit-transition: visibility opacity 0.2s;
 }
 
+.image-container {
+    margin-top: 50px;
+}
+
 .overlay-content {
     margin: 4em;
 }
@@ -124,6 +139,22 @@ hr {
 }
 
 /* Misc */
+
+.username {
+    color: #000000;
+}
+
+.scrollable {
+    margin: 2em;
+}
+
+@media (min-width:961px) { 
+    .scrollable {
+        height: 300px;
+        margin: 2em;
+        overflow-y: auto;
+    }
+}
 
 .website-link {
     color: firebrick;
