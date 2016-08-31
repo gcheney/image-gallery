@@ -15,7 +15,7 @@ var imageSchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
-    user: String,
+    creator: String,
     title: { 
         type: String, 
         required: true,
@@ -30,12 +30,15 @@ var imageSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    isPublic: {
+    unlisted: {
         type: Boolean,
         required: true,
-        default: true
+        default: false
     },
-    comments: [commentSchema]
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
 });
 
 module.exports = mongoose.model('Image', imageSchema, 'images');
