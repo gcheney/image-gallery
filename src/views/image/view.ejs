@@ -14,25 +14,26 @@
                 </div>
                 <div class="col-md-6">
                     <div class="well clearfix">
-                        <h2>Custom Illustration</h2>
-                        <p class="lead">For an international ad campaign.</p>
-                        <h4>42 Likes</h4>
+                        <h2><%= image.title %></h2>
+                        <p class="lead"><%= image.description %></p>
+                        <h4><%= image.likes %> Likes</h4>
                         <button class="btn btn-success pull-left"><i class="fa fa-star" aria-hidden="true"></i> Like This</button>
-                        <a href="#" class="username pull-right">Created By: <strong>Username</strong></a>
+                        <a href="#" class="username pull-right">Created By: <strong><%= image.creator %></strong></a>
                     </div>
                     <div class="text-center">
                         <h4>Discuss This Image</h4>
                         <button class="btn btn-default" data-toggle="modal" data-target="#commentModal"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
-                        <div class="scrollable comments-section">
-                            <p><a href="#" class="username"><strong>Username</strong></a> blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah</p>
-                            <p><a href="#" class="username"><strong>Username</strong></a> blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah</p>
-                            <p><a href="#" class="username"><strong>Username</strong></a> blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah</p>
-                            <p><a href="#" class="username"><strong>Username</strong></a> blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah</p>
-                            <p><a href="#" class="username"><strong>Username</strong></a> blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah</p>
-                            <p><a href="#" class="username"><strong>Username</strong></a> blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah</p>
-                            <p><a href="#" class="username"><strong>Username</strong></a> blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah</p>
-                            <p><a href="#" class="username"><strong>Username</strong></a> blah blah blah blah blah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blahblah blah blah blah</p>
-                        </div>
+                    </div>
+                    <div class="scrollable comments-section">
+                        <% if (image.comments) { %>
+                            <% image.comments.forEach(function(comment) { %>
+                                <p><a href="#" class="username"><strong><%= comment.author %></strong></a> <%= comment.content %></p>
+                            <% }); %>
+                        <% } %>
+                        <p><a href="#" class="username"><strong>username</strong></a> Comment content Comment content Comment content Comment content</p>
+                        <p><a href="#" class="username"><strong>username</strong></a> Comment content Comment content Comment content Comment content</p>
+                        <p><a href="#" class="username"><strong>username</strong></a> Comment content Comment content  Comment content Comment content</p>
+                        <p><a href="#" class="username"><strong>username</strong></a> Comment content Comment content Comment content Comment content</p>
                     </div>
 
                     <a href="/" class="btn btn-primary btn-gallery pull-right"><i class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -53,7 +54,7 @@
                            <span class="sr-only">Close</span>
                     </button>
                     <h4 class="modal-title" id="commentModalLabel">
-                        Comment on Custom Illustration
+                        Comment on <%= image.title %>
                     </h4>
                 </div>
 
