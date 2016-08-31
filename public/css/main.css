@@ -14,7 +14,7 @@ body {
 .footer {
 	width:100%;
     bottom: 0;
-	background:#333;
+	background:#2c3e50;
 	clear: both;
  	position: absolute;
  	z-index: 10;
@@ -23,8 +23,8 @@ body {
 hr {
     border: none;
     height: 1px;
-    color: #333;
-    background-color: #333; 
+    color: #2c3e50;
+    background-color: #2c3e50; 
 }
 
 .jumbotron {
@@ -157,5 +157,9 @@ hr {
 }
 
 .website-link {
-    color: firebrick;
+    color: whitesmoke;
+}
+
+.website-link:hover {
+    color: navajowhite;
 }
