@@ -149,9 +149,15 @@ hr {
 }
 
 @media (min-width:961px) { 
+    
+    .comments-section {
+        box-shadow: 0px -1px 1px rgba(34,34,34,0.6);
+    }
+    
     .scrollable {
         height: 300px;
         margin: 2em;
+        padding: 1em;
         overflow-y: auto;
     }
 }
