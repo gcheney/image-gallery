@@ -6,7 +6,57 @@ module.exports.commentsCreate = function (req, res) {
 };
 
 module.exports.commentsReadOne = function (req, res) { 
-    sendJsonResponse(res, 200, {"status": "sucess"});
+    var imageId = req.params.imageid;
+    var commentId = req.params.commentid;
+    
+    if (req.params && imageId && commentId) {
+        Image
+            .findById(imageId)
+            .select('name comments')
+            .exec(function(err, image){
+                var commentResponse, comment;
+            
+                if (!image) {
+                    console.log('Could not locate image with id ' + imageId);
+                    sendJsonResponse(res, 404, {
+                       "message": "image not found" 
+                    });
+                    return;
+                } else if (err) {
+                    console.log('Mongoose error: ' + err);
+                    sendJsonResponse(res, 400, err);
+                    return;
+                }
+                
+                if (image.comments && image.comments.length > 0) {
+                    comment = image.comments.id(commentId);
+                    if (!comment) {
+                        console.log('Could not locate comment with id ' + commentId);
+                        sendJsonResponse(res, 404, {
+                           "message": "comment not found" 
+                        });
+                    } else {
+                        commentResponse = {
+                            image: {
+                                name: image.name,
+                                id: imageId
+                            },
+                            comment: comment
+                        };
+                        
+                        sendJsonResponse(res, 200, commentResponse);
+                    }
+                } else {
+                    sendJsonResponse(res, 404, {
+                       "message": "No comments found for this image" 
+                    });
+                }
+            });
+    } else {
+        sendJsonResponse(res, 404, {
+           "message": "Document not found, image id and comment id are required" 
+        });
+    }
 };
 
 module.exports.commentsUpdateOne = function (req, res) { 
