@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var seedDB = require('./seed')
 
-var dbURI = 'mongodb://localhost/image-link-gallery';
+var dbURI = 'mongodb://localhost/image-gallery';
 if (process.env.NODE_ENV === 'production') {
     dbURI = process.env.MONGOLAB_URI;
 }
@@ -10,7 +10,7 @@ mongoose.connect(dbURI);
 mongoose.connection.on('connected', function () {
     console.log('Mongoose connected to ' + dbURI);
     //seed mock data
-    seedDB();
+    //seedDB();
 });
 
 mongoose.connection.on('error',function (err) {

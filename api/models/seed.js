@@ -7,7 +7,12 @@ var images = [
             title: "Golden Gate", 
             description: "A nice picture of the Golden Gate Bridge", 
             likes: 12,
-            creator: 'Homer'
+            creator: 'Homer',
+            comments: [{
+                author: "Jackie Chan", 
+                createdOn: new Date("Jul 16, 2013"), 
+                content: "What a great place. I can't say enough goodthings about it."
+            }]
         },
         { 
             url: 'https://images.unsplash.com/photo-1435771112039-1e5b2bcad966?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450', 
