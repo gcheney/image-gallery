@@ -2,7 +2,15 @@ var mongoose = require('mongoose');
 var Image = require('../models/image');
 
 module.exports.imagesListAll = function (req, res) { 
-    
+    Image
+        .find({})
+        .exec(function(err, images) {
+            if (err) {
+                sendJsonResponse(res, 404, err);
+            } else {
+                sendJsonResponse(res, 200, images);
+            }
+        });
 };
 
 module.exports.imagesCreate = function (req, res) { 
