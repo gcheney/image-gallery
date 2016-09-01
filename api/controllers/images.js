@@ -6,10 +6,12 @@ module.exports.imagesListAll = function (req, res) {
         .find({})
         .exec(function(err, images) {
             if (err) {
-                sendJsonResponse(res, 404, err);
-            } else {
-                sendJsonResponse(res, 200, images);
+                console.log('Mongoose error: ' + err);
+                sendJsonResponse(res, 400, err);
+                return;
             }
+        
+            sendJsonResponse(res, 200, images);
         });
 };
 
@@ -30,12 +32,12 @@ module.exports.imagesReadOne = function (req, res) {
                 return;
             } else if (err) {
                 console.log('Mongoose error: ' + err);
-                sendJsonResponse(res, 404, err);
+                sendJsonResponse(res, 400, err);
                 return;
-            } else {
-                console.log('Successfully found image');
-                sendJsonResponse(res, 200, image);
-            }
+            } 
+            
+            console.log('Successfully found image');
+            sendJsonResponse(res, 200, image);
         });
     } else {
         sendJsonResponse(res, 404, {
