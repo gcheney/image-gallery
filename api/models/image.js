@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var commentSchema = new mongoose.Schema({
     author: String,
-    text: String,
+    content: String,
     createdOn: {
         type: Date,
         required: true,
@@ -35,10 +35,7 @@ var imageSchema = new mongoose.Schema({
         required: true,
         default: false
     },
-    comments: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment'
-    }]
+    comments: [commentSchema]
 });
 
 module.exports = mongoose.model('Image', imageSchema, 'images');
