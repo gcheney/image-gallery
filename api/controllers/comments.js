@@ -23,7 +23,7 @@ module.exports.commentsCreate = function (req, res) {
                         });
                         image.save(function(err, image){
                             if (err) {
-                                sendJsonResponse(res, 400, err);
+                                sendJsonResponse(res, 404, err);
                             } else {
                                 var commentPos = image.comments.length - 1;
                                 var newComment = image.comments[commentPos];
@@ -91,7 +91,51 @@ module.exports.commentsReadOne = function (req, res) {
 };
 
 module.exports.commentsUpdateOne = function (req, res) { 
-    sendJsonResponse(res, 200, {"status": "sucess"});
+    var imageid = req.params.imageid;
+    var commentid = req.params.commentid;
+    
+    if (!imageid || !commentid) {
+        sendJsonResponse(res, 404, {
+           "message": "Comment not found, image id and comment id are both required" 
+        });
+        return;
+    }
+    
+    Image
+        .findById(imageid)
+        .select('comments')
+        .exec(function(err, image){
+            if (!image) {
+                sendJsonResponse(res, 404, {
+                   "message": "image not found" 
+                });
+                return
+            } else if (err) {
+                console.log('Mongo error: ' + err);
+                sendJsonResponse(res, 400, err);
+                return;
+            }
+        
+            if (image.comments && image.comments.length > 0) {
+                var commentToUpdate = image.comments.id(commentid);
+                if (!commentToUpdate) {
+                    sendJsonResponse(res, 404, {
+                       "message": "comment not found" 
+                    });
+                } else {
+                    commentToUpdate.content = req.body.content;
+                    
+                    image.save(function(err, image){
+                        if (err) {
+                            console.log('Mongo error: ' + err);
+                            sendJsonResponse(res, 404, err);
+                        } else {
+                            sendJsonResponse(res, 200, commentToUpdate);
+                        }
+                    });
+                }
+            }
+    });
 };
 
 module.exports.commentsDeleteOne = function (req, res) { 
