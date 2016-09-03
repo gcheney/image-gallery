@@ -139,7 +139,50 @@ module.exports.commentsUpdateOne = function (req, res) {
 };
 
 module.exports.commentsDeleteOne = function (req, res) { 
-    sendJsonResponse(res, 200, {"status": "sucess"});
+    var imageid = req.params.imageid;
+    var commentid = req.params.commentid;
+    
+    if (!imageid || !commentid) {
+        sendJsonResponse(res, 404, {
+           "message": "Comment not found, image id and comment id are both required" 
+        });
+        return;
+    }
+    
+    Image
+        .findById(imageid)
+        .select('comments')
+        .exec(function(err, image){
+            if (!image) {
+                sendJsonResponse(res, 404, {
+                   "message": "image not found" 
+                });
+                return
+            } else if (err) {
+                console.log('Mongo error: ' + err);
+                sendJsonResponse(res, 400, err);
+                return;
+            }
+        
+            if (image.comments && image.comments.length > 0) {
+                var commentToDelete = image.comments.id(commentid);
+                if (!commentToDelete) {
+                    sendJsonResponse(res, 404, {
+                       "message": "comment not found" 
+                    });
+                } else {
+                    commentToDelete.remove();
+                    console.log('Removed comment ' + commentToDelete);
+                    image.save(function(err, image){
+                        if (err) {
+                            sendJsonResponse(res, 404, err);
+                        } else {
+                            sendJsonResponse(res, 204, null);
+                        }
+                    });
+                }
+            }
+    });
 };
 
 var sendJsonResponse = function(res, status, content) {
