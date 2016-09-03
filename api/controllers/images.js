@@ -102,7 +102,24 @@ module.exports.imagesUpdateOne = function (req, res) {
 };
 
 module.exports.imagesDeleteOne = function (req, res) { 
+    var imageid = req.params.imageid;
     
+    if (imageid) {
+        Image
+            .findByIdAndRemove(imageid)
+            .exec(function(err, image) {
+                if (err) {                 
+                    sendJsonResponse(res, 404, err);
+                    return;
+                } else {
+                    sendJsonResponse(res, 204, null);
+                }
+        });
+    } else {
+        sendJsonResponse(res, 404, {
+            "message": "No image id"
+        });
+    }
 };
 
 var sendJsonResponse = function(res, status, content) {
