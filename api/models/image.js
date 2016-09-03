@@ -32,7 +32,6 @@ var imageSchema = new mongoose.Schema({
     },
     unlisted: {
         type: Boolean,
-        required: true,
         default: false
     },
     comments: [commentSchema]

@@ -16,7 +16,20 @@ module.exports.imagesListAll = function (req, res) {
 };
 
 module.exports.imagesCreate = function (req, res) { 
-    sendJsonResponse(res, 200, {"status": "sucess"});
+    console.log(req.body);
+    var imageToCreate = {
+        //TODO: add details
+    };
+    
+    Image.create(imageToCreate, function(err, location) {
+        if (err) {
+            console.log(err);
+            sendJSONresponse(res, 400, err);
+        } else {
+            console.log(location);
+            sendJSONresponse(res, 201, location);
+        }
+    });
 };
 
 module.exports.imagesReadOne = function (req, res) { 
