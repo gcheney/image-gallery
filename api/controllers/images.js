@@ -65,11 +65,44 @@ module.exports.imagesReadOne = function (req, res) {
 };
 
 module.exports.imagesUpdateOne = function (req, res) { 
-    sendJsonResponse(res, 200, {"status": "sucess"});
+    var imageid = req.params.imageid;
+    if (!imageid) {
+        sendJsonResponse(res, 404, {
+            "message": "image not found, the image id is required"
+        });
+        return;
+    }
+    
+    Image
+        .findById(imageid)
+        .select('-comments -likes')
+        .exec(function(err, image){
+            if (!image) {
+                sendJsonResponse(res, 404, {
+                    "message": "image id not found"
+                });
+                return;
+            } else if (err) {
+                sendJsonResponse(res, 400, err);
+            }
+        
+            //update image
+            image.title =req.body.title,
+            image.description =req.body.description,
+            image.unlisted = req.body.unlisted
+            
+            image.save(function(err, image){
+                if (err) {
+                    sendJsonResponse(res, 404, err);
+                } else {
+                    sendJsonResponse(res, 200, image);
+                }
+            });
+    });
 };
 
 module.exports.imagesDeleteOne = function (req, res) { 
-    sendJsonResponse(res, 200, {"status": "sucess"});
+    
 };
 
 var sendJsonResponse = function(res, status, content) {
