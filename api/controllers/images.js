@@ -17,17 +17,22 @@ module.exports.imagesListAll = function (req, res) {
 
 module.exports.imagesCreate = function (req, res) { 
     console.log(req.body);
+    
     var imageToCreate = {
-        //TODO: add details
+        url: req.body.url,
+        creator: req.body.creator,
+        title: req.body.title,
+        description: req.body.description,
+        unlisted: req.body.unlisted
     };
     
-    Image.create(imageToCreate, function(err, location) {
+    Image.create(imageToCreate, function(err, image) {
         if (err) {
             console.log(err);
-            sendJSONresponse(res, 400, err);
+            sendJsonResponse(res, 400, err);
         } else {
-            console.log(location);
-            sendJSONresponse(res, 201, location);
+            console.log('Created new image: ' + image);
+            sendJsonResponse(res, 201, image);
         }
     });
 };
