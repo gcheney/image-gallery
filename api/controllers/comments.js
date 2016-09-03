@@ -2,7 +2,38 @@ var mongoose = require('mongoose');
 var Image = require('../models/image');
 
 module.exports.commentsCreate = function (req, res) { 
-    sendJsonResponse(res, 200, {"status": "sucess"});
+    var imageid = req.params.imageid;
+    
+    if (imageid) {
+        Image
+            .findById(imageid)
+            .select('comments')
+            .exec(function(err, image){
+                if (err) {
+                    sendJsonResponse(res, 400, err);
+                } else {
+                    if (!image) {
+                        sendJsonResponse(res, 404, {
+                           "message": "image not found" 
+                        });
+                    } else {
+                        image.comments.push({
+                            author: req.body.author,
+                            content: req.body.content
+                        });
+                        image.save(function(err, image){
+                            if (err) {
+                                sendJsonResponse(res, 400, err);
+                            } else {
+                                var commentPos = image.comments.length - 1;
+                                var newComment = image.comments[commentPos];
+                                sendJsonResponse(res, 201, newComment);
+                            }
+                        });
+                    }
+                }
+        });
+    }
 };
 
 module.exports.commentsReadOne = function (req, res) { 
@@ -51,7 +82,7 @@ module.exports.commentsReadOne = function (req, res) {
                        "message": "No comments found for this image" 
                     });
                 }
-            });
+        });
     } else {
         sendJsonResponse(res, 404, {
            "message": "Document not found, image id and comment id are required" 
