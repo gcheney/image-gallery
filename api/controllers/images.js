@@ -112,6 +112,7 @@ module.exports.imagesDeleteOne = function (req, res) {
                     sendJsonResponse(res, 404, err);
                     return;
                 } else {
+                    console.log('Image removed: ' + image);
                     sendJsonResponse(res, 204, null);
                 }
         });
