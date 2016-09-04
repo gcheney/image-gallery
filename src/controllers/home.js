@@ -20,9 +20,10 @@ var renderHomepage = function(req, res, responseBody){
         }
     }
     res.render('home', {
-        title: 'The Image Gallery',
+        title: 'Home',
         pageHeader: {
             title: 'The Image Gallery',
+            tagline: 'A collection of beautiful images'
         },
         images: responseBody,
         message: message
@@ -31,10 +32,9 @@ var renderHomepage = function(req, res, responseBody){
 
 /* GET '/' */
 module.exports.index = function(req, res) {
-    var requestOptions, path;
-    path = '/api/images';
+    var path = '/api/images';
     
-    requestOptions = {
+    var requestOptions = {
         url : apiOptions.server + path,
         method : "GET",
         json : {}
