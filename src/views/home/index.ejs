@@ -19,7 +19,7 @@
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="thumbnail img-hover">
                             <div class="image-wrap">
-                                <a href="/image/view">
+                                <a href="/image/<%= image._id %>">
                                     <img src="<%= image.url %>">
                                     <div class="image-overlay">
                                         <h3 class="overlay-content">
@@ -31,7 +31,7 @@
                                 </a>
                             </div>
                             <div class="image-details">
-                                <a href="/image/view"><%= image.title %></a><%= image.description %>
+                                <a href="/images/<%= image._id %>"><%= image.title %></a><%= image.description %>
                             </div>
                         </div>
                     </div>

@@ -1,21 +1,17 @@
 var request = require('request');
 
-var apiOptions = {
-    server : "http://localhost:3000"
-};
-
+var server = "http://localhost:3000";
 if (process.env.NODE_ENV === 'production') {
-    apiOptions.server = "https://image-gallery1.herokuapp.com/";
+    server = "https://image-gallery1.herokuapp.com/";
 }
 
-
-var renderHomepage = function(req, res, responseBody){
+var renderHomepage = function(req, res, images){
     var message;
-    if (!(responseBody instanceof Array)) {
+    if (!(images instanceof Array)) {
         message = "API lookup error";
-        responseBody = [];
+        images = [];
     } else {
-        if (!responseBody.length) {
+        if (!images.length) {
             message = "No images found";
         }
     }
@@ -25,7 +21,7 @@ var renderHomepage = function(req, res, responseBody){
             title: 'The Image Gallery',
             tagline: 'A collection of beautiful images'
         },
-        images: responseBody,
+        images: images,
         message: message
     });
 };
@@ -35,13 +31,16 @@ module.exports.index = function(req, res) {
     var path = '/api/images';
     
     var requestOptions = {
-        url : apiOptions.server + path,
+        url : server + path,
         method : "GET",
         json : {}
     };
     
-    request(requestOptions, function(err, response, body) {
-        renderHomepage(req, res, body);
+    request(requestOptions, function(err, response, data) {
+        if (err) {
+            console.log(err);
+        }
+        renderHomepage(req, res, data);
     });
 };
 
