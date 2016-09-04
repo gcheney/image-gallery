@@ -4,16 +4,17 @@
   "description": "A site for storing and commenting on linked images.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node app.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gcheney/image-link-gallery.git"
+      "type": "git",
+      "url": "git+https://github.com/gcheney/image-link-gallery.git"
   },
   "author": "Glendon Cheney",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gcheney/image-link-gallery/issues"
+      "url": "https://github.com/gcheney/image-link-gallery/issues"
   },
   "homepage": "https://github.com/gcheney/image-link-gallery#readme",
   "dependencies": {
