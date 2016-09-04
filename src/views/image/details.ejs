@@ -14,10 +14,10 @@
                 </div>
                 <div class="col-md-6">
                     <div class="well clearfix">
-                        <p class="date text-muted pull-right"><%= image.createdOn %></p>
+                        <p id="date" class="text-muted pull-right"><%= image.createdOn %></p>
                         <h2><%= image.title %></h2>
                         <p class="lead"><%= image.description %></p>
-                        <button class="btn btn-default pull-left"><%= image.likes %> <i class="fa fa-star" aria-hidden="true"></i></button>
+                        <button id="btn-like" class="btn btn-default pull-left"><%= image.likes %> <i class="fa fa-star" aria-hidden="true"></i></button>
                         <a href="#" class="username pull-right">Created By: <strong><%= image.creator %></strong></a>
                     </div>
                     <div class="text-center">
