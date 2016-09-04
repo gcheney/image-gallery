@@ -11,8 +11,8 @@ router.get('/about', homeController.about);
 router.get('/contact', homeController.contact);
 
 /* Image */
-router.get('/image/view', imageController.view);
 router.get('/image/new', imageController.add);
+router.get('/image/:imageid', imageController.details);
 
 /* Account */
 router.get('/account/login', accountController.login);
