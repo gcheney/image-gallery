@@ -1,29 +1,37 @@
-var mongoose = require('mongoose');
-var Image = require('../../api/models/image');
+var request = require('request');
 
-/* GET '/images/view' */
-module.exports.view = function(req, res) {
-    var image = { 
-            url: "http://i.imgur.com/qK42fUu.jpg", 
-            title: "Golden Gate", 
-            description: "A nice picture of the Golden Gate Bridge", 
-            likes: 12,
-            creator: 'Homer',
-            comments: [
-                {
-                    author: 'Homer',
-                    content: 'I liked this!'
-                }
-            ]
-        }
-    
-        res.render('image/view', { 
-            title: 'View Image',
-            image: image
-        });
+var server = "http://localhost:3000";
+if (process.env.NODE_ENV === 'production') {
+    server = "https://image-gallery1.herokuapp.com/";
+}
+
+var renderDetailsPage = function(req, res, image) {
+    res.render('image/details', {
+        title: image.title,
+        image: image
+    });
 };
 
-/* GET '/images/add' */
+
+/* GET '/images/details' */
+module.exports.details = function(req, res) {
+    var path = '/api/images/' + req.params.imageid;
+    
+    var requestOptions = {
+        url: server + path,
+        method: "GET",
+        json: {}
+    };
+    
+    request(requestOptions, function(err, response, data) {
+        if (err) {
+            console.log(err);
+        }
+        renderDetailsPage(req, res, data);
+    });
+};
+
+/* GET '/images/new' */
 module.exports.add = function(req, res) {
     res.render('image/new', { title: 'Add a New Image'});
 };

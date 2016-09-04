@@ -40,22 +40,22 @@ module.exports.imagesCreate = function (req, res) {
 module.exports.imagesReadOne = function (req, res) { 
     if (req.params && req.params.imageid) {
         Image
-        .findById(req.params.imageid)
-        .exec(function(err, image){
-            if (!image) {
-                console.log('Image not found');
-                sendJsonResponse(res, 404, {
-                    "message": "image not found"
-                });
-                return;
-            } else if (err) {
-                console.log('Mongoose error: ' + err);
-                sendJsonResponse(res, 400, err);
-                return;
-            } 
-            
-            console.log('Successfully found image');
-            sendJsonResponse(res, 200, image);
+            .findById(req.params.imageid)
+            .exec(function(err, image){
+                if (!image) {
+                    console.log('Image not found');
+                    sendJsonResponse(res, 404, {
+                        "message": "image not found"
+                    });
+                    return;
+                } else if (err) {
+                    console.log('Mongoose error: ' + err);
+                    sendJsonResponse(res, 400, err);
+                    return;
+                } 
+
+                console.log('Successfully found image');
+                sendJsonResponse(res, 200, image);
         });
     } else {
         sendJsonResponse(res, 404, {
