@@ -5,7 +5,7 @@ var apiOptions = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-    apiOptions.server = "";
+    apiOptions.server = "https://image-gallery1.herokuapp.com/";
 }
 
 
