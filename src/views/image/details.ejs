@@ -10,7 +10,7 @@
         <div class="row">
             <div class="image-container">
                 <div class="col-md-6 thumbnail">
-                    <a href="<%= image.url %>"><img src="<%= image.url %>" class="align-left img-responsive" alt="image"></a>
+                    <a href="<%= image.url %>" class="lightbox-trigger"><img src="<%= image.url %>" class="align-left img-responsive" alt="image"></a>
                 </div>
                 <div class="col-md-6">
                     <div class="well clearfix">
@@ -73,6 +73,15 @@
         </div>
     </div>
     <!-- Comment Modal End -->
+    
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <h1 class="lightbox-close"><i class="fa fa-times-circle-o" aria-hidden="true"></i></h1>
+        <div id="lightbox-content">
+            <img src="#" />
+        </div>
+    </div>
+    <!-- Lightbox End -->
     
     <% include ../partials/footer %>
     <% include ../partials/scripts %>
