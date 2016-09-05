@@ -12,6 +12,30 @@ var renderDetailsPage = function(req, res, image) {
     });
 };
 
+var renderErrorPage = function (req, res, status) {
+    var title, message;
+    if (status === 404) {
+        title = "404: Page Not Found";
+        message = "It seems the page you were looking for is not here.";
+    } else if (status === 500) {
+        title = "500: Internal Server Error";
+        message = "The server is experincing an issue at this time.";
+    } else {
+        title = status + ", something went wrong";
+        message = "Something is not quite right.";
+    }
+    
+    res.status(status);
+    res.render('error', {
+        title : title,
+        message : message,
+        error: {
+            status: status,
+            stack: ''
+        }
+    });
+};
+
 
 /* GET '/images/details' */
 module.exports.details = function(req, res) {
@@ -27,7 +51,11 @@ module.exports.details = function(req, res) {
         if (err) {
             console.log(err);
         }
-        renderDetailsPage(req, res, data);
+        if (response.statusCode === 200) {
+            renderDetailsPage(req, res, data);
+        } else {
+            renderErrorPage(req, res, response.statusCode);
+        }
     });
 };
 
