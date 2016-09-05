@@ -54,7 +54,6 @@ module.exports.imagesReadOne = function (req, res) {
                     return;
                 } 
 
-                console.log('Successfully found image');
                 sendJsonResponse(res, 200, image);
         });
     } else {
