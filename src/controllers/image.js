@@ -63,3 +63,37 @@ module.exports.details = function(req, res) {
 module.exports.add = function(req, res) {
     res.render('image/new', { title: 'Add a New Image'});
 };
+
+/* GET '/images/:imageid/comments/new' */
+module.exports.addComment = function(req, res) {
+    var imageid = req.params.imageid;
+    var path = "/api/images/" + imageid + '/comments';
+        
+    var commentData = {
+        author: req.body.author,
+        content: req.body.content    
+    };
+    var requestOptions = {
+        url : server + path,
+        method : "POST",
+        json : commentData
+    };
+    
+    console.log('New comments data: ' + commentData);
+    if (!commentData.author ||  !commentData.content) {
+        console.log('No comment data was entered');
+        res.redirect('/images/' + imageid);
+    } else {
+        request(requestOptions, function(err, response, body) {
+            if (response.statusCode === 201) {
+                res.redirect('/images/' + imageid);
+            } else if (response.statusCode === 400 && body.name && body.name === "ValidationError" ) {
+                console.log('Validation Error');
+                renderErrorPage(req, res, response.statusCode);
+            } else {
+                console.log(body);
+                renderErrorPage(req, res, response.statusCode);
+            }
+        });
+    }
+};

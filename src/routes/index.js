@@ -13,6 +13,7 @@ router.get('/contact', homeController.contact);
 /* Image */
 router.get('/images/new', imageController.add);
 router.get('/images/:imageid', imageController.details);
+router.post('/images/:imageid/comments', imageController.addComment);
 
 /* Account */
 router.get('/account/login', accountController.login);
