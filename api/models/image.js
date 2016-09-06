@@ -1,11 +1,16 @@
 var mongoose = require('mongoose');
 
 var commentSchema = new mongoose.Schema({
-    author: String,
-    content: String,
+    author: {
+        type: String,
+        required: true    
+    },
+    content: {
+        type: String,
+        required: true    
+    },
     createdOn: {
         type: Date,
-        required: true,
         default: Date.now
     }
 });
@@ -18,7 +23,6 @@ var imageSchema = new mongoose.Schema({
     creator: String,
     title: { 
         type: String, 
-        required: true,
         default: 'Untitled'
     },
     likes: {
