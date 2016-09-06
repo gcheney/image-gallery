@@ -8,7 +8,8 @@ if (process.env.NODE_ENV === 'production') {
 var renderDetailsPage = function(req, res, image) {
     res.render('image/details', {
         title: image.title,
-        image: image
+        image: image,
+        error: req.query.err
     });
 };
 
@@ -37,7 +38,7 @@ var renderErrorPage = function (req, res, status) {
 };
 
 
-/* GET '/images/details' */
+/* GET '/images/:imageid' */
 module.exports.details = function(req, res) {
     var path = '/api/images/' + req.params.imageid;
     
@@ -47,12 +48,12 @@ module.exports.details = function(req, res) {
         json: {}
     };
     
-    request(requestOptions, function(err, response, data) {
+    request(requestOptions, function(err, response, image) {
         if (err) {
             console.log(err);
         }
         if (response.statusCode === 200) {
-            renderDetailsPage(req, res, data);
+            renderDetailsPage(req, res, image);
         } else {
             renderErrorPage(req, res, response.statusCode);
         }
@@ -81,15 +82,15 @@ module.exports.addComment = function(req, res) {
     
     console.log('New comments data: ' + commentData);
     if (!commentData.author ||  !commentData.content) {
-        console.log('No comment data was entered');
-        res.redirect('/images/' + imageid);
+        res.redirect('/images/' + imageid +'/?err=val');
     } else {
         request(requestOptions, function(err, response, body) {
+            console.log(body);
             if (response.statusCode === 201) {
                 res.redirect('/images/' + imageid);
-            } else if (response.statusCode === 400 && body.name && body.name === "ValidationError" ) {
-                console.log('Validation Error');
-                renderErrorPage(req, res, response.statusCode);
+            } else if (body.name && body.name === "ValidationError" ) {
+                console.log('A Mongoose Validation Error occured');
+                res.redirect('/images/' + imageid +'/?err=val');
             } else {
                 console.log(body);
                 renderErrorPage(req, res, response.statusCode);

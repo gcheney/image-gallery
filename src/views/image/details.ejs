@@ -7,6 +7,9 @@
 	<% include ../partials/navbar %>
     <div class="container">
         <div class="row">
+            <% if (error && error === 'val') { %>
+                <div class="alert alert-danger text-center" role="alert">All comment fields are required, please try again</div>
+            <% } %>
             <div class="image-container">
                 <div class="col-md-6 thumbnail">
                     <a href="<%= image.url %>" class="lightbox-trigger"><img src="<%= image.url %>" class="align-left img-responsive" alt="image"></a>
