@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <% if (error && error === 'val') { %>
-                <div class="alert alert-danger text-center" role="alert">All comment fields are required, please try again</div>
+                <div id="error-box" class="alert alert-danger text-center" role="alert">All comment fields are required, please try again</div>
             <% } %>
             <div class="image-container">
                 <div class="col-md-6 thumbnail">
@@ -61,12 +61,12 @@
                     <form action="/images/<%= image._id %>/comments" method="POST" id="comment-form" class="form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="author" placeholder="Name"></textarea>
+                                <input id="author-input" type="text" class="form-control" name="author" placeholder="Name">
                             </div>
                         </div>
                          <div class="form-group">
                             <div class="col-sm-10">
-                                <textarea rows="5" class="form-control" name="content" placeholder="Comment"></textarea>
+                                <textarea id="content-input" rows="5" class="form-control" name="content" placeholder="Comment"></textarea>
                             </div>
                         </div>
                         <div class="form-group">

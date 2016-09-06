@@ -32,6 +32,10 @@ hr {
     background: #ecf0f1;
 }
 
+.validation-error { 
+    border:  1px solid #a94442; 
+}
+
 /* Navbar */
 
 .navbar-inverse {
