@@ -34,10 +34,6 @@ var imageSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    unlisted: {
-        type: Boolean,
-        default: false
-    },
     comments: [commentSchema]
 });
 
