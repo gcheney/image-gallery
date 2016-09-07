@@ -11,7 +11,7 @@ var renderHomepage = function(req, res){
         pageHeader: {
             title: 'The Image Gallery',
             tagline: 'A collection of beautiful images'
-        }
+        }    
     });
 };
 
