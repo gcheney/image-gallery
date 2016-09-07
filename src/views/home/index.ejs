@@ -13,7 +13,12 @@
         </div>
 
         <div ng-controller="homepageController">
-
+            <div class="row">
+                <div class="text-center">
+                    <label for="filter">Filter results: </label> &nbsp;
+                    <input id="filter" type="text" name="filter" ng-model="textFilter">
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="image in data.images | filter: textFilter">
                     <div class="thumbnail img-hover">
