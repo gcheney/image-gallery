@@ -128,11 +128,15 @@ hr {
     opacity: 1;
 }
 
-.thumbnail {
+.image-hover {
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     -ms-transition: all .4s ease-in-out;
+}
+
+.image-filter {
+    margin-bottom: 3em;
 }
 
 .transition {

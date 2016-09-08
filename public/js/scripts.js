@@ -10,11 +10,14 @@
     {
         imgLinkHover : function()
         {
-            //add image transition on hover
-            $('.img-hover').hover(function() {
-                $(this).addClass('transition');  
-            }, function() {
-                $(this).removeClass('transition');
+            // add image transition on hover
+            // now done in angular 
+            $('.image-hover').on('mouseenter mouseleave', function(event) {
+                 if (event.type == 'mouseenter') {
+                     $(this).addClass('transition');
+                 } else  {
+                     $(this).removeClass('transition');
+                 }
             });
         },
         toggleLikeBtn: function() 
@@ -62,7 +65,7 @@
     };
         
     $(D).ready(function($) {
-        JQUERY.UTIL.imgLinkHover();
+        //JQUERY.UTIL.imgLinkHover();
         JQUERY.UTIL.toggleLikeBtn();
         JQUERY.UTIL.formatImageDate();
         JQUERY.UTIL.setupLightbox();

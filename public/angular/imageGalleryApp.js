@@ -18,7 +18,19 @@ var imageData = function ($http) {
     return $http.get('/api/images');
 };
 
-
+// image hover directive
+var imageHover = function () {
+    return {
+        link: function (scope, element, attr) {
+            element.hover(function () {
+                $(this).addClass('transition');
+             },
+             function () {
+                 $(this).removeClass('transition');
+             });
+        }
+    }
+};
 
 angular
     .module('imageGalleryApp')
