@@ -10,7 +10,7 @@
         var vm = this;
         vm.pageHeader = {
             title: 'The Image Gallery',
-            strapline: 'A user supported collection of beautiful images'
+            subtitle: 'A user supported collection of beautiful images'
         };
 
         vm.message = 'Searching for images...';
