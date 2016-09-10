@@ -5,36 +5,36 @@
         <p><a class="btn btn-primary btn-large" href="/image/new">Add a New Image To The Collection</a></p>
     </div>
 
-    <div>
-        <div class="row">
-            <div class="image-filter text-center">
-                <h3>{{ vm.message }}</h3>
-                <label for="filter">Filter results: </label> &nbsp;
-                <input id="filter" type="text" name="filter" ng-model="textFilter">
-            </div>
+    <div class="row">
+        <div class="image-filter text-center">
+            <h3>{{ vm.message }}</h3>
+            <label for="filter">Filter results: </label> &nbsp;
+            <input id="filter" type="text" name="filter" ng-model="textFilter">
         </div>
-        <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="image in vm.data.images | filter: textFilter">
-                <div image-hover class="image-hover">
-                    <div class="thumbnail">
-                        <div class="image-wrap">
-                            <a href="/images/{{ image._id }}">
-                                <img src="{{ image.url }}">
-                                <div class="image-overlay">
-                                    <h3 class="overlay-content">
-                                        <i class="fa fa-comment" aria-hidden="true"></i> {{ image.comments.length}} 
-                                        &nbsp;
-                                        <i class="fa fa-heart" aria-hidden="true"></i> {{ image.likes }}
-                                    </h3>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="image-details">
-                            <a href="/images/{{ image._id }}">{{ image.title }}</a>{{ image.description }}
-                        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="image in vm.data.images | filter: textFilter">
+            <div image-hover class="image-hover">
+                <div class="thumbnail">
+                    <div class="image-wrap">
+                        <a href="/images/{{ image._id }}">
+                            <img src="{{ image.url }}">
+                            <div class="image-overlay">
+                                <h3 class="overlay-content">
+                                    <i class="fa fa-comment" aria-hidden="true"></i> {{ image.comments.length}} 
+                                    &nbsp;
+                                    <i class="fa fa-heart" aria-hidden="true"></i> {{ image.likes }}
+                                </h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="image-details">
+                        <a href="/images/{{ image._id }}">{{ image.title }}</a>{{ image.description }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<footer-basic></footer-basic>

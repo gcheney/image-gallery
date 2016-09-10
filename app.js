@@ -20,7 +20,8 @@ var clientFiles = [
     'client/app.js',
     'client/home/home.controller.js',
     'client/common/services/imageData.service.js',
-    'client/common/directives/imageHover.directive.js'
+    'client/common/directives/footerBasic/footerBasic.directive.js',
+    'client/common/directives/imageHover/imageHover.directive.js'
 ];
 
 var uglifiedFiles = uglifyJs.minify(clientFiles, { compress: false });
@@ -46,8 +47,12 @@ app.use(express.static(path.join(__dirname, 'client')));
 var PORT = process.env.PORT || 3000;
 
 // app routes
-app.use('/', routes);
+//app.use('/', routes);
 app.use('/api', api);
+
+app.use(function(req, res){
+    res.sendfile(path.join(__dirname, 'client', 'index.html'));
+});
 
 
 // *********** ERROR HANDLERS ********************** //
