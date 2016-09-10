@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="imageGalleryApp">
 
     <head>
-        <title>The Image Gallery - <%= title %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Image Gallery</title>
         <link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
@@ -33,6 +34,8 @@
             </div>
         </div>
     </nav>
+    
+    <div ng-view></div>
 
     <footer class="footer">
         <div class="container">
@@ -48,7 +51,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/angular/angular.min.js" type="text/javascript"></script>
+    <script src="/lib/angular-route.min.js" type="text/javascript"></script>
     <script src="app.js" type="text/javascript"></script>
+    <script src="/common/imageData.service.js" type="text/javascript"></script>
+    <script src="/home/home.controller.js" type="text/javascript"></script>
     <script src="/js/scripts.js" type="text/javascript"></script>
     <script src="/js/validation.js" type="text/javascript"></script>
 </body>
