@@ -7,11 +7,32 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./src/routes/index');
 var api = require('./api/routes/index');
+var uglifyJs = require('uglify-js');
+var fs = require('fs');
 require('./api/models/db');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src', 'views'));
 app.set('view engine', 'ejs');
+
+//uglify js files
+var clientFiles = [
+    'client/app.js',
+    'client/home/home.controller.js',
+    'client/common/services/imageData.service.js',
+    'client/common/directives/imageHover.directive.js'
+];
+
+var uglifiedFiles = uglifyJs.minify(clientFiles, { compress: false });
+
+// write minified file to system
+fs.writeFile('public/angular/imageGalleryApp.min.js', uglifiedFiles.code, function(err){
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('Client scripts successfully minified');
+    }
+});
 
 //app setup
 app.use(logger('dev'));
