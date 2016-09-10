@@ -21,7 +21,8 @@ var clientFiles = [
     'client/home/home.controller.js',
     'client/common/services/imageData.service.js',
     'client/common/directives/footerBasic/footerBasic.directive.js',
-    'client/common/directives/imageHover/imageHover.directive.js'
+    'client/common/directives/imageHover/imageHover.directive.js',
+    'client/common/directives/navigation/navigation.directive.js'
 ];
 
 var uglifiedFiles = uglifyJs.minify(clientFiles, { compress: false });
