@@ -13,9 +13,6 @@
         imageData.getImageById(vm.imageid)
             .success(function(data) {
                 vm.data = { image: data }
-                vm.pageHeader = {
-                    title: vm.data.image.title
-                };  
             })
             .error(function(e) {
                 console.log(e);

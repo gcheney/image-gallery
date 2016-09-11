@@ -20,7 +20,10 @@ var imageSchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
-    creator: String,
+    creator: { 
+        type: String, 
+        default: 'Anonymous'
+    },
     title: { 
         type: String, 
         default: 'Untitled'

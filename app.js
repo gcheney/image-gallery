@@ -56,7 +56,7 @@ var PORT = process.env.PORT || 3000;
 app.use('/api', api);
 
 app.use(function(req, res){
-    res.sendfile(path.join(__dirname, 'client', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });
 
 
