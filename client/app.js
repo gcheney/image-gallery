@@ -1,6 +1,6 @@
 (function () {
 
-    angular.module('imageGalleryApp', ['ngRoute']);
+    angular.module('imageGalleryApp', ['ngRoute', 'ngSanitize']);
 
     function config ($routeProvider, $locationProvider) {
         $routeProvider

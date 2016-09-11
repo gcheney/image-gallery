@@ -24,7 +24,8 @@ var clientFiles = [
     'client/common/directives/footerBasic/footerBasic.directive.js',
     'client/common/directives/imageHover/imageHover.directive.js',
     'client/common/directives/navigation/navigation.directive.js',
-    'client/common/directives/pageHeader/pageHeader.directive.js'
+    'client/common/directives/pageHeader/pageHeader.directive.js',
+    'client/common/filters/addHtmlLineBreaks.filter.js'
 ];
 
 var uglifiedFiles = uglifyJs.minify(clientFiles, { compress: false });
