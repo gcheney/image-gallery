@@ -5,25 +5,21 @@
             <div class="jumbotron">
                 <h1><i class="fa fa-camera-retro" aria-hidden="true"></i></span> {{ vm.data.image.title }} </h1>
                 <p class="lead">{{ vm.data.image.description }}</p>
-                <button id="btn-like" class="btn btn-lg btn-success pull-left">{{ vm.data.image.likes }} <i class="fa fa-star" aria-hidden="true"></i></button>
-                <p class="username pull-right">Created By: <a href="#"><strong> {{ vm.data.image.creator }} </strong></a>&nbsp;<span class="text-muted pull-right">{{ vm.data.image.createdOn }}</span></p>
+                <button id="btn-like" class="btn btn-success pull-left">{{ vm.data.image.likes }} <i class="fa fa-star" aria-hidden="true"></i></button>
+                <p class="username pull-right">Created By: <a href="#"><strong> {{ vm.data.image.creator }} </strong></a>&nbsp;<span class="text-muted pull-right">{{ vm.data.image.createdOn | date: 'dd MMMM yyyy' }}</span></p>
             </div>
             <div class="image-container">
                 <div class="col-md-6 thumbnail">
                     <a href="{{ vm.data.image.url }}" class="lightbox-trigger"><img src="{{ vm.data.image.url }}" class="align-left img-responsive" alt="image"></a>
                 </div>
                 <div class="col-md-6">
-                    <div class="text-center">
-                        <h4>Discuss This Image</h4>
-                        <button class="btn btn-default" data-toggle="modal" data-target="#commentModal"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
-                    </div>
                     <div class="scrollable comments-section">
-                        <div class="comment" ng-repeat="comment in vm.data.image.comments">
-                            <p><a href="#" class="username"><strong>{{ comment.author }}</strong></a>&nbsp;<span ng-bind-html="comment.content | addHtmlLineBreaks"></span></p>
+                        <div class="comment" ng-repeat="comment in vm.data.image.comments | orderBy: 'createdOn': true">
+                            <p><a href="#" class="username"><strong>{{ comment.author }}</strong></a>&nbsp;<span class="text-muted">({{ comment.createdOn | date: 'dd-mm-yy hh:mm a' }})</span>&nbsp;<span>{{ comment.content }}</span></p>
                         </div>
                     </div>
-
-                    <a href="/" class="btn btn-primary btn-gallery pull-right"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#commentModal"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+                    <a href="/" class="btn btn-default btn-gallery pull-right"><i class="fa fa-arrow-left" aria-hidden="true"></i>
  Back to Gallery</a>
                 </div>
             </div>
