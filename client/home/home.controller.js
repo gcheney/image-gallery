@@ -13,8 +13,8 @@
             subtitle: 'A user supported collection of beautiful images'
         };
 
-        vm.message = 'Searching for images...';
-        imageData
+        vm.message = 'Loading images...';
+        imageData.getAllImages()
             .success(function(data) {
                 vm.message = data.length > 0 ? '' : 'No images found';
                 vm.data = { images: data };

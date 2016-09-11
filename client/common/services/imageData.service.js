@@ -6,8 +6,20 @@
 
     imageData.$inject = ['$http'];
     
-    function imageData ($http) {
-        return $http.get('/api/images');
-    };
+    function imageData($http) {
+        
+        var getAllImages = function() {
+            return $http.get('/api/images');
+        };
+        
+        var getImageById = function(imageid) {
+            return $http.get('/api/images/' + imageid)
+        };
+        
+        return {
+            getAllImages: getAllImages,
+            getImageById: getImageById
+        };   
+    }
     
 })();
