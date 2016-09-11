@@ -4,9 +4,9 @@
         .module('imageGalleryApp')
         .controller('imageDetailController', imageDetailController);
     
-    imageDetailController.$inject = ['$routeParams', 'imageData'];
+    imageDetailController.$inject = ['$routeParams', '$modal', 'imageData'];
     
-    function imageDetailController($routeParams, imageData) {
+    function imageDetailController($routeParams, $modal, imageData) {
         var vm = this;
         vm.imageid = $routeParams.imageid;
         
@@ -17,6 +17,10 @@
             .error(function(e) {
                 console.log(e);
             });
+        
+        vm.commentModal = function () {
+            alert("Let's add a comment!");
+        };
     }
     
 })();
