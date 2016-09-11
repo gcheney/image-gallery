@@ -14,6 +14,11 @@
                 controller: 'aboutController',
                 controllerAs: 'vm'
             })
+            .when('/images/:imageid', {
+                templateUrl: '/imageDetail/imageDetail.view.html',
+                controller: 'imageDetailController',
+                controllerAs: 'vm'
+            })
             .otherwise({redirectTo: '/'});
         
         $locationProvider.html5Mode(true);
