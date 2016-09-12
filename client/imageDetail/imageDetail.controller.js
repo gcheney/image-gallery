@@ -25,7 +25,7 @@
                 resolve: {
                     imageData: function() {
                         return {
-                            imageId : vm.imageid,
+                            imageid : vm.imageid,
                             imageTitle : vm.data.image.title
                         };
                     }
