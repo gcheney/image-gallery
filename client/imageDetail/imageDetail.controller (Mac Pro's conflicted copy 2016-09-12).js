@@ -20,7 +20,7 @@
         
         vm.commentModal = function () {
             var modalInstance = $modal.open({
-                templateUrl: '/commentModal/commentModal.view.html',
+                templateUrl: 'commentModal/commentModal.view.html',
                 controller: 'commentModalController as vm'
             });
         };
