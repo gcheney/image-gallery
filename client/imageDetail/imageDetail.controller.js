@@ -21,7 +21,15 @@
         vm.commentModal = function () {
             var modalInstance = $modal.open({
                 templateUrl: '/commentModal/commentModal.view.html',
-                controller: 'commentModalController as vm'
+                controller: 'commentModalController as vm',
+                resolve: {
+                    imageData: function() {
+                        return {
+                            imageId : vm.imageid,
+                            imageTitle : vm.data.image.title
+                        };
+                    }
+                }
             });
         };
     }
