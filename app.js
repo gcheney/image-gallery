@@ -22,7 +22,7 @@ var clientFiles = [
     'client/about/about.controller.js',
     'client/imageDetail/imageDetail.controller.js',
     'client/commentModal/commentModal.controller.js',
-    'client/common/services/imageData.service.js',
+    'client/common/services/imageGalleryData.service.js',
     'client/common/directives/footerBasic/footerBasic.directive.js',
     'client/common/directives/imageHover/imageHover.directive.js',
     'client/common/directives/navigation/navigation.directive.js',

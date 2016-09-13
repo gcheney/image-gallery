@@ -4,13 +4,13 @@
         .module('imageGalleryApp')
         .controller('imageDetailController', imageDetailController);
     
-    imageDetailController.$inject = ['$routeParams', '$modal', 'imageData'];
+    imageDetailController.$inject = ['$routeParams', '$modal', 'imageGalleryData'];
     
-    function imageDetailController($routeParams, $modal, imageData) {
+    function imageDetailController($routeParams, $modal, imageGalleryData) {
         var vm = this;
         vm.imageid = $routeParams.imageid;
         
-        imageData.getImageById(vm.imageid)
+        imageGalleryData.getImageById(vm.imageid)
             .success(function(data) {
                 vm.data = { image: data }
             })

@@ -2,11 +2,11 @@
 
     angular
         .module('imageGalleryApp')
-        .service('imageData', imageData);
+        .service('imageGalleryData', imageGalleryData);
 
-    imageData.$inject = ['$http'];
+    imageGalleryData.$inject = ['$http'];
     
-    function imageData($http) {
+    function imageGalleryData($http) {
         
         var getAllImages = function() {
             return $http.get('/api/images');
@@ -16,9 +16,14 @@
             return $http.get('/api/images/' + imageid)
         };
         
+        var addCommentById = function(imageid, commentData) {
+            return $http.post('/api/images/' + imageid + '/comments', commentData);
+        };
+        
         return {
             getAllImages: getAllImages,
-            getImageById: getImageById
+            getImageById: getImageById,
+            addCommentById: addCommentById
         };   
     }
     

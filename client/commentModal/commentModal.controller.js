@@ -3,32 +3,46 @@
         .module('imageGalleryApp')
         .controller('commentModalController', commentModalController);
     
-    commentModalController.$inject = ['$modalInstance', 'imageData'];
+    commentModalController.$inject = ['$modalInstance', 'imageGalleryData', 'imageData'];
     
-    function commentModalController ($modalInstance, imageData) {
+    function commentModalController ($modalInstance, imageGalleryData, imageData) {
         var vm = this;
         vm.imageData = imageData;
+        
+        vm.onSubmit = function() {
+            vm.formError = '';
+            if (!vm.formData) {
+                vm.formError = 'All fields are required.';
+                return false;
+            } else if (!vm.formData.name) {
+                vm.formError = 'Please include your name.';
+                return false;
+            } else if (!vm.formData.content) {
+                vm.formError = 'Please leave a comment.';
+                return false;
+            } else {
+                vm.addComment(vm.imageData.imageid, vm.formData);
+            }
+        };
+        
+        vm.addComment = function (imageid, formData) {
+            imageGalleryData.addCommentById(imageid, {
+                author: formData.name,
+                content: formData.content
+            })
+            .success(function (data) {
+                console.log('Success!');
+            })
+            .error(function (data) {
+                vm.formError = 'Comment not saved, please try again.';
+            });
+            
+            return false;
+        };
         
         vm.modal = {
             cancel : function () {
                 $modalInstance.dismiss('cancel');
-            }
-        };
-        
-        vm.onSubmit = function () {
-            vm.formError = "";
-            if (!vm.formData) {
-                vm.formError = "All fields required, please try again";
-                return false;
-            } else if (!vm.formData.name) {
-                vm.formError = "Please include your name";
-                return false;
-            } else if (!vm.formData.content) {
-                vm.formError = "Please include a comment";
-                return false;
-            } else {
-                console.log(vm.formData);
-                return false;
             }
         };
     }

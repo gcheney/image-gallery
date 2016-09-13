@@ -4,9 +4,9 @@
         .module('imageGalleryApp')
         .controller('homeController', homeController);
 
-    homeController.$inject = ['$scope', 'imageData'];
+    homeController.$inject = ['$scope', 'imageGalleryData'];
     
-    function homeController ($scope, imageData) {
+    function homeController ($scope, imageGalleryData) {
         var vm = this;
         vm.pageHeader = {
             title: 'The Image Gallery',
@@ -14,7 +14,7 @@
         };
 
         vm.message = 'Loading images...';
-        imageData.getAllImages()
+        imageGalleryData.getAllImages()
             .success(function(data) {
                 vm.message = data.length > 0 ? '' : 'No images found';
                 vm.data = { images: data };
