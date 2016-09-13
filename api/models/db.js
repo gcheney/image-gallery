@@ -1,5 +1,9 @@
 var mongoose = require('mongoose');
-var seedDB = require('./seed')
+//var seedDB = require('./seed')
+
+//Bring in schemas
+require('./image');
+require('./user');
 
 var dbURI = 'mongodb://localhost/image-gallery';
 if (process.env.NODE_ENV === 'production') {
