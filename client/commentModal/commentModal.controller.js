@@ -31,7 +31,7 @@
                 content: formData.content
             })
             .success(function (data) {
-                console.log('Success!');
+                vm.modal.close(data);
             })
             .error(function (data) {
                 vm.formError = 'Comment not saved, please try again.';
@@ -41,6 +41,9 @@
         };
         
         vm.modal = {
+            close: function (newCommentData) {
+                $modalInstance.close(newCommentData);
+            },
             cancel : function () {
                 $modalInstance.dismiss('cancel');
             }

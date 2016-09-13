@@ -6,7 +6,7 @@
     
     imageDetailController.$inject = ['$routeParams', '$modal', 'imageGalleryData'];
     
-    function imageDetailController($routeParams, $modal, imageGalleryData) {
+    function imageDetailController ($routeParams, $modal, imageGalleryData) {
         var vm = this;
         vm.imageid = $routeParams.imageid;
         
@@ -23,13 +23,17 @@
                 templateUrl: '/commentModal/commentModal.view.html',
                 controller: 'commentModalController as vm',
                 resolve: {
-                    imageData: function() {
+                    imageData: function () {
                         return {
                             imageid : vm.imageid,
                             imageTitle : vm.data.image.title
                         };
                     }
                 }
+            });
+            
+            modalInstance.result.then(function (newCommentData) {
+                vm.data.image.comments.push(newCommentData);
             });
         };
     }
