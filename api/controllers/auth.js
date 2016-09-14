@@ -27,7 +27,30 @@ module.exports.register = function(req, res) {
     });
 };
 
-
+module.exports.login = function(req, res) {
+    if (!req.body.email || !req.body.password) {
+        sendJSONresponse(res, 400, {
+            "message": "All fields are required"
+        });
+        return;
+    }
+    
+    passport.authenticate('local', function(err, user, info){
+        if (err) {
+            sendJSONresponse(res, 404, err);
+            return;
+        }
+        
+        if (user) {
+            var token = user.generateJwt();
+            sendJSONresponse(res, 200, {
+                "token" : token
+            });
+        } else {
+            sendJsonResponse(res, 401, info);
+        }
+    })(req, res);
+};
 
 
 var sendJSONresponse = function(res, status, content) {
