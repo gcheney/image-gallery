@@ -1,10 +1,6 @@
 var mongoose = require('mongoose');
 //var seedDB = require('./seed')
 
-//Bring in schemas
-require('./image');
-require('./user');
-
 var dbURI = 'mongodb://localhost/image-gallery';
 if (process.env.NODE_ENV === 'production') {
     dbURI = process.env.MONGOLAB_URI;
@@ -52,3 +48,8 @@ process.on('SIGTERM', function() {
         process.exit(0);
     });
 });
+
+
+//Bring in required schemas
+require('./image');
+require('./user');

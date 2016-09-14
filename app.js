@@ -7,7 +7,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./src/routes/index');
-var api = require('./api/routes/index');
 var uglifyJs = require('uglify-js');
 var fs = require('fs');
 var passport = require('passport');
@@ -61,7 +60,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(passport.initialize());
 
 // app routes
-//app.use('/', routes);
+var api = require('./api/routes/index');
 app.use('/api', api);
 
 app.use(function(req, res){
