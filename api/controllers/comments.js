@@ -1,39 +1,30 @@
 var mongoose = require('mongoose');
 var Image = require('../models/image');
+var User = mongoose.model('User');
 
 module.exports.commentsCreate = function (req, res) { 
-    var imageid = req.params.imageid;
     
-    if (imageid) {
-        Image
-            .findById(imageid)
-            .select('comments')
-            .exec(function(err, image){
-                if (err) {
-                    sendJsonResponse(res, 400, err);
-                } else {
-                    if (!image) {
-                        sendJsonResponse(res, 404, {
-                           "message": "image not found" 
-                        });
+    getAuthor(req, res, function(req, res, userName){
+        var imageid = req.params.imageid;    
+        if (imageid) {
+            Image
+                .findById(imageid)
+                .select('comments')
+                .exec(function(err, image){
+                    if (err) {
+                        sendJsonResponse(res, 400, err);
                     } else {
-                        image.comments.push({
-                            author: req.body.author,
-                            content: req.body.content
-                        });
-                        image.save(function(err, image){
-                            if (err) {
-                                sendJsonResponse(res, 404, err);
-                            } else {
-                                var commentPos = image.comments.length - 1;
-                                var newComment = image.comments[commentPos];
-                                sendJsonResponse(res, 201, newComment);
-                            }
-                        });
+                        if (!image) {
+                            sendJsonResponse(res, 404, {
+                               "message": "image not found" 
+                            });
+                        } else {
+                            addNewComment(req, res, image, userName);
+                        }
                     }
-                }
-        });
-    }
+            });
+        } 
+    });
 };
 
 module.exports.commentsReadOne = function (req, res) { 
@@ -184,6 +175,51 @@ module.exports.commentsDeleteOne = function (req, res) {
             }
     });
 };
+
+var getAuthor = function(req, res, callback) {
+    if (req.payload && req.payload.email) {
+        User    
+            .findOne({ email: req.payload.email })
+            .exec(function(err, user){
+                if (!user) {
+                    sendJsonResponse(res, 404, {
+                        "message": "The specified user could not be found"
+                    });
+                    return;
+                } else if (err) {
+                    console.log(err);
+                    sendJsonResponse(res, 404, err);
+                    return;
+                } else {
+                    callback(req, res, user.name);
+                }   
+            });
+    } else {
+        sendJsonResponse(res, 404, {
+            "message": "No user data provided"
+        });
+    }
+} 
+
+var addNewComment = function(req, res, image, author) {
+    if (!image) {
+        sendJSONresponse(res, 404, "image id not found or included");
+    } else {
+        image.comments.push({
+            author: author,
+            content: req.body.content
+        });
+        image.save(function(err, image){
+            if (err) {
+                sendJsonResponse(res, 404, err);
+            } else {
+                var commentPos = image.comments.length - 1;
+                var newComment = image.comments[commentPos];
+                sendJsonResponse(res, 201, newComment);
+            }
+        });
+    }
+}
 
 var sendJsonResponse = function(res, status, content) {
     res.status(status);
