@@ -43,7 +43,7 @@
                 var payload = JSON.parse($window.atob(token.split('.')[1]));
                 return payload.exp > Date.now() / 1000;
             } else {
-            return false;
+                return false;
             }
         };
         
@@ -61,8 +61,13 @@
         };
 
         return {
-            saveToken : saveToken,
-            getToken : getToken
+            saveToken: saveToken,
+            getToken: getToken,
+            register: register,
+            login: login,
+            logout: logout,
+            isLoggedIn: isLoggedIn,
+            currentUser: currentUser
         };
     }
 })();
