@@ -1,4 +1,5 @@
 // initialize app
+require('dotenv').load(); // load environemtn variables
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -9,7 +10,11 @@ var routes = require('./src/routes/index');
 var api = require('./api/routes/index');
 var uglifyJs = require('uglify-js');
 var fs = require('fs');
+var passport = require('passport');
+
+// bring in db and passport config
 require('./api/models/db');
+require('./api/config/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src', 'views'));
@@ -41,16 +46,19 @@ fs.writeFile('public/angular/imageGalleryApp.min.js', uglifiedFiles.code, functi
     }
 });
 
+// set app port
+var PORT = process.env.PORT || 3000;
+
 //app setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'client')));
 
-// set app port
-var PORT = process.env.PORT || 3000;
+app.use(passport.initialize());
 
 // app routes
 //app.use('/', routes);
