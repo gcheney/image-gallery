@@ -41,5 +41,5 @@ userSchema.methods.generateJwt = function() {
         exp: parseInt(expiry.getTime()/1000)
     };
     
-    return jwt.sign(payload, 'serversecret');
+    return jwt.sign(payload, process.env.JWT_SECRET);
 };
