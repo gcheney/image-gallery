@@ -3,9 +3,9 @@
         .module('imageGalleryApp')
         .service('authentication', authentication);
     
-    authentication.$inject = ['$window'];
+    authentication.$inject = ['$window', '$http'];
     
-    function authentication($window) {
+    function authentication($window, $http) {
         var saveToken = function(token) {
             $window.localStorage['imageGallery-token'] = token;
         };
