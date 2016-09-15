@@ -2,15 +2,15 @@
     
     angular
         .module('imageGalleryApp')
-        .controller('registerController', registerController);
+        .controller('loginController', loginController);
     
-    registerController.$inject = ['$location','authentication'];
+    loginController.$inject = ['$location','authentication'];
     
-    function registerController($location, authentication) {
+    function loginController($location, authentication) {
         
         var vm = this;
         vm.pageHeader = {
-            title: 'Register for The Image Gallery'
+            title: 'Login To The Image Gallery'
         };
         
         vm.credentials = {
@@ -27,15 +27,15 @@
                 vm.formError = "All fields required, please try again";
                 return false;
             } else {
-                vm.doRegister();
+                vm.doLogin();
             }
         };
             
-        vm.doRegister = function() {
+        vm.doLogin = function() {
             vm.formError = "";
             
             authentication
-                .register(vm.credentials)
+                .login(vm.credentials)
                 .error(function(err){
                     vm.formError = err;
                 })

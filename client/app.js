@@ -24,6 +24,11 @@
                 controller: 'registerController',
                 controllerAs: 'vm'
             })
+            .when('/login', {
+                templateUrl: '/auth/login/login.view.html',
+                controller: 'loginController',
+                controllerAs: 'vm'
+            })
             .otherwise({redirectTo: '/'});
         
         $locationProvider.html5Mode(true);
