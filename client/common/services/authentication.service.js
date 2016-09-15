@@ -32,7 +32,7 @@
         
         // delete token to logout user 
         var logout = function() {
-            $window.localStorage.removeItem('loc8r-token');
+            $window.localStorage.removeItem('imageGallery-token');
         };
         
         // returns true or false based on token
