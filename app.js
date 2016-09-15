@@ -1,12 +1,11 @@
 // initialize app
-require('dotenv').load(); // load environemtn variables
+require('dotenv').load(); // load environment variables
 var express = require('express');
 var app = express();
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./src/routes/index');
 var uglifyJs = require('uglify-js');
 var fs = require('fs');
 var passport = require('passport');
@@ -63,10 +62,11 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 app.use(passport.initialize());
 
-// app routes
+// app api routes
 var api = require('./api/routes/index');
 app.use('/api', api);
 
+// send angular app to client
 app.use(function(req, res){
     res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });
