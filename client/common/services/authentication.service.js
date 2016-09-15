@@ -32,7 +32,7 @@
         
         // delete token to logout user 
         var logout = function() {
-            $window.localStorage.removeItem('loc8r-token');
+            $window.localStorage.removeItem('imageGallery-token');
         };
         
         // returns true or false based on token
@@ -48,14 +48,13 @@
         };
         
         // get information about current user from payload
-        var currentUser = function() {          
+        var getCurrentUser = function() {          
             if (isLoggedIn()) {
                 var token = getToken();
                 var payload = JSON.parse($window.atob(token.split('.')[1]));
 
                 return {
-                    email : payload.email,
-                    name : payload.name
+                    username : payload.username
                 };
             }
         };
@@ -67,7 +66,7 @@
             login: login,
             logout: logout,
             isLoggedIn: isLoggedIn,
-            currentUser: currentUser
+            getCurrentUser: getCurrentUser
         };
     }
 })();
