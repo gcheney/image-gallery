@@ -19,6 +19,11 @@
                 controller: 'imageDetailController',
                 controllerAs: 'vm'
             })
+            .when('/register', {
+                templateUrl: '/auth/register/register.view.html',
+                controller: 'registerController',
+                controllerAs: 'vm'
+            })
             .otherwise({redirectTo: '/'});
         
         $locationProvider.html5Mode(true);

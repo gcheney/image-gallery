@@ -3,7 +3,6 @@ var Image = require('../models/image');
 var User = mongoose.model('User');
 
 module.exports.commentsCreate = function (req, res) { 
-    
     getAuthor(req, res, function(req, res, userName){
         var imageid = req.params.imageid;    
         if (imageid) {
@@ -177,10 +176,10 @@ module.exports.commentsDeleteOne = function (req, res) {
 };
 
 var getAuthor = function(req, res, callback) {
-    if (req.payload && req.payload.email) {
+    if (req.payload && req.payload.username) {
         User    
-            .findOne({ email: req.payload.email })
-            .exec(function(err, user){
+            .findOne({ username: req.payload.username })
+            .exec(function(err, user) {
                 if (!user) {
                     sendJsonResponse(res, 404, {
                         "message": "The specified user could not be found"
@@ -191,7 +190,7 @@ var getAuthor = function(req, res, callback) {
                     sendJsonResponse(res, 404, err);
                     return;
                 } else {
-                    callback(req, res, user.name);
+                    callback(req, res, user.username);
                 }   
             });
     } else {
