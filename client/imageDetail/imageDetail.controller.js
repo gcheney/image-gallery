@@ -4,11 +4,16 @@
         .module('imageGalleryApp')
         .controller('imageDetailController', imageDetailController);
     
-    imageDetailController.$inject = ['$routeParams', '$modal', 'imageGalleryData'];
+    imageDetailController.$inject = ['$routeParams', '$location', '$modal', 
+                                     'imageGalleryData', 'authentication'];
     
-    function imageDetailController ($routeParams, $modal, imageGalleryData) {
+    function imageDetailController ($routeParams, $location, $modal, 
+                                     imageGalleryData, authentication) {
         var vm = this;
+        
         vm.imageid = $routeParams.imageid;
+        vm.isLoggedIn = authentication.isLoggedIn();
+        vm.currentPath = $location.path();
         
         imageGalleryData.getImageById(vm.imageid)
             .success(function(data) {

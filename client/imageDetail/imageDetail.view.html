@@ -7,11 +7,12 @@
             <h1><i class="fa fa-camera-retro" aria-hidden="true"></i></span> {{ vm.data.image.title }} </h1>
             <p class="lead">{{ vm.data.image.description }}</p>
             <p class="text-muted pull-right">{{ vm.data.image.createdOn | date: 'dd MMMM yyyy' }}</p>
-            <button ng-click="vm.commentModal()" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#commentModal"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+            <button ng-show="vm.isLoggedIn" ng-click="vm.commentModal()" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#commentModal"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+            <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-lg btn-primary">Login to Comment</a>
         </div>
         <div class="image-container">
             <div class="col-md-6 thumbnail">
-                <a href="{{ vm.data.image.url }}" class="lightbox-trigger"><img src="{{ vm.data.image.url }}" class="align-left img-responsive" alt="image"></a>
+                <a href="{{ vm.data.image.url }}"><img src="{{ vm.data.image.url }}" class="align-left img-responsive" alt="image"></a>
             </div>
             <div class="col-md-6">
                 <div class="scrollable comments-section">

@@ -14,9 +14,6 @@
             if (!vm.formData) {
                 vm.formError = 'All fields are required.';
                 return false;
-            } else if (!vm.formData.name) {
-                vm.formError = 'Please include your name.';
-                return false;
             } else if (!vm.formData.content) {
                 vm.formError = 'Please leave a comment.';
                 return false;
@@ -27,7 +24,6 @@
         
         vm.addComment = function (imageid, formData) {
             imageGalleryData.addCommentById(imageid, {
-                author: formData.name,
                 content: formData.content
             })
             .success(function (data) {
