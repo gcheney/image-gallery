@@ -22,8 +22,7 @@ module.exports.imagesCreate = function (req, res) {
         url: req.body.url,
         creator: req.body.creator,
         title: req.body.title,
-        description: req.body.description,
-        unlisted: req.body.unlisted
+        description: req.body.description    
     };
     
     Image.create(imageToCreate, function(err, image) {
@@ -86,11 +85,10 @@ module.exports.imagesUpdateOne = function (req, res) {
             }
         
             //update image
-            image.title =req.body.title,
-            image.description =req.body.description,
-            image.unlisted = req.body.unlisted
+            image.title = req.body.title,
+            image.description = req.body.description,
             
-            image.save(function(err, image){
+            image.save(function(err, image) {
                 if (err) {
                     sendJsonResponse(res, 404, err);
                 } else {
