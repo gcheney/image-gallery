@@ -16,6 +16,14 @@
             return $http.get('/api/images/' + imageid)
         };
         
+        var addImage = function(imageData) {
+            return $http.post('/api/images/', imageData, {
+                    headers : {
+                        Authorization: 'Bearer ' + authentication.getToken()
+                    }
+            });
+        };
+        
         var addCommentById = function(imageid, commentData) {
             return $http.post('/api/images/' + imageid + '/comments', commentData, {
                     headers : {
