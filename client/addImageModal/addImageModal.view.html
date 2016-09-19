@@ -1,0 +1,42 @@
+<!-- Add Image Modal -->
+<div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="vm.modal.cancel()">
+               <i class="fa fa-times" aria-hidden="true"></i>
+               <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title">
+            Add An Image To The Gallery
+        </h4>
+    </div>
+
+    <!-- Add Image Modal Body -->
+    <div class="modal-body">
+        <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{ vm.formError }}</div>
+        <form ng-submit="vm.onSubmit()" role="form" id="addImage" name="addImage" class="form-horizontal">
+             <div class="form-group">
+                <label for="title" class="col-xs-2 col-sm-2 control-label">Title: </label>
+                <div class="col-xs-10 col-sm-10">
+                    <input id="title-input" type="text" ng-model="vm.formData.title" class="form-control" name="content" placeholder="Title">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-xs-2 col-sm-2 control-label">Description: </label>
+                <div class="col-xs-10 col-sm-10">
+                    <input id="description-input" type="text" ng-model="vm.formData.description" class="form-control" name="description" placeholder="Description">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="url" class="col-xs-2 col-sm-2 control-label">Image URL: </label>
+                <div class="col-xs-10 col-sm-10">
+                    <textarea id="content-input"  type="text" ng-model="vm.formData.url" class="form-control" name="url" placeholder="Image URL"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="vm.modal.cancel()" type="button" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-comment" aria-hidden="true"></i>  Add Image</button>
+            </div>
+        </form>
+    </div>
+</div>
