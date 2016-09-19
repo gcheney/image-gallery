@@ -5,6 +5,7 @@ var User = mongoose.model('User');
 module.exports.imagesListAll = function (req, res) { 
     Image
         .find({})
+        .sort({'createdOn': 'desc'})
         .exec(function(err, images) {
             if (err) {
                 console.log('Mongoose error: ' + err);
