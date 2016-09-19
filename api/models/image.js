@@ -7,6 +7,7 @@ var commentSchema = new mongoose.Schema({
     },
     content: {
         type: String,
+        maxlength: 100, 
         required: true    
     },
     createdOn: {
@@ -27,6 +28,7 @@ var imageSchema = new mongoose.Schema({
     },
     title: { 
         type: String,
+        maxlength: 25,
         required: true,
         default: 'Untitled'
     },
@@ -35,7 +37,12 @@ var imageSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
-    description: String,
+    description: { 
+        type: String,
+        maxlength: 40,
+        required: true,
+        default: 'No description provided.'
+    }
     createdOn: {
         type: Date,
         required: true,
