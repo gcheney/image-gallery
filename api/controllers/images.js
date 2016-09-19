@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Image = require('../models/image');
+var User = mongoose.model('User');
 
 module.exports.imagesListAll = function (req, res) { 
     Image
@@ -17,7 +18,7 @@ module.exports.imagesListAll = function (req, res) {
 
 module.exports.imagesCreate = function (req, res) { 
     
-    getCreator(req, res, function(req, res, userName) {
+    getCreator(req, res, function(req, res, username) {
         var imageToCreate = {
             url: req.body.url,
             creator: username,
@@ -35,6 +36,7 @@ module.exports.imagesCreate = function (req, res) {
             }
         });
     });
+    
 };
 
 module.exports.imagesReadOne = function (req, res) { 
