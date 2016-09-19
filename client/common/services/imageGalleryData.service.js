@@ -16,8 +16,8 @@
             return $http.get('/api/images/' + imageid)
         };
         
-        var addImage = function(imageData) {
-            return $http.post('/api/images/', imageData, {
+        var addNewImage = function(imageData) {
+            return $http.post('/api/images', imageData, {
                     headers : {
                         Authorization: 'Bearer ' + authentication.getToken()
                     }
@@ -35,6 +35,7 @@
         return {
             getAllImages: getAllImages,
             getImageById: getImageById,
+            addNewImage: addNewImage,
             addCommentById: addCommentById
         };   
     }
