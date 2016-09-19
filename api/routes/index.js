@@ -12,10 +12,10 @@ var auth = jwt({
 
 // image api routes
 router.get('/images', imageController.imagesListAll);
-router.post('/images', imageController.imagesCreate);
+router.post('/images', auth, imageController.imagesCreate);
 router.get('/images/:imageid', imageController.imagesReadOne);
-router.put('/images/:imageid', imageController.imagesUpdateOne);
-router.delete('/images/:imageid', imageController.imagesDeleteOne);
+router.put('/images/:imageid', auth, imageController.imagesUpdateOne);
+router.delete('/images/:imageid', auth, imageController.imagesDeleteOne);
 
 // comment api routes
 router.post('/images/:imageid/comments', auth, commentController.commentsCreate);
