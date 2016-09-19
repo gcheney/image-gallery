@@ -5,7 +5,7 @@
     
     addImageModalController.$inject = ['$modalInstance', 'imageGalleryData'];
     
-    function addImageModalController ($modalInstance, imageGalleryData) {
+    function addImageModalController($modalInstance, imageGalleryData) {
         var vm = this;
         
         vm.onSubmit = function() {
@@ -22,13 +22,14 @@
         };
         
         vm.addImage = function(formData) {
-            imageGalleryData.addImage(formData)
-            .success(function (data) {
-                vm.modal.close(data);
-            })
-            .error(function (data) {
-                vm.formError = 'Comment not saved, please try again.';
-            });
+            imageGalleryData
+                .addNewImage(formData)
+                .success(function (data) {
+                    vm.modal.close(data);
+                })
+                .error(function (data) {
+                    vm.formError = 'Your image was not saved, please try again.';
+                });
             
             return false;
         };
