@@ -23,24 +23,28 @@ var imageSchema = new mongoose.Schema({
     },
     creator: { 
         type: String, 
-        default: 'Anonymous'
+        required: true
     },
     title: { 
         type: String,
         maxlength: 25,
+        required: true,
         default: 'Untitled'
     },
     likes: {
         type: Number,
+        required: true,
         default: 0
     },
     description: { 
         type: String,
         maxlength: 40,
+        required: true,
         default: 'No description provided.'
     },
     createdOn: {
         type: Date,
+        required: true,
         default: Date.now
     },
     comments: [commentSchema]
