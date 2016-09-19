@@ -3,13 +3,13 @@ var Image = require('../models/image');
 var User = mongoose.model('User');
 
 module.exports.commentsCreate = function (req, res) { 
-    getAuthor(req, res, function(req, res, userName){
+    getAuthor(req, res, function(req, res, userName) {
         var imageid = req.params.imageid;    
         if (imageid) {
             Image
                 .findById(imageid)
                 .select('comments')
-                .exec(function(err, image){
+                .exec(function(err, image) {
                     if (err) {
                         sendJsonResponse(res, 400, err);
                     } else {
@@ -198,7 +198,7 @@ var getAuthor = function(req, res, callback) {
             "message": "No user data provided"
         });
     }
-} 
+};
 
 var addNewComment = function(req, res, image, author) {
     if (!image) {
@@ -218,7 +218,7 @@ var addNewComment = function(req, res, image, author) {
             }
         });
     }
-}
+};
 
 var sendJsonResponse = function(res, status, content) {
     res.status(status);
