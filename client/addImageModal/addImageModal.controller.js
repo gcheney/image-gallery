@@ -13,11 +13,11 @@
             if (!vm.formData) {
                 vm.formError = 'All fields are required.';
                 return false;
-            } else if (!vm.formData.content) {
-                vm.formError = 'Please leave a comment.';
+            } else if (!vm.formData.url) {
+                vm.formError = 'Please provide the image URL';
                 return false;
             } else {
-                vm.addComment(vm.imageData.imageid, vm.formData);
+                vm.addImage(vm.formData);
             }
         };
         
