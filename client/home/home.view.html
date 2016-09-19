@@ -2,8 +2,12 @@
 
 <div class="container">
     
-    <page-header content="vm.pageHeader"></page-header>
-
+    <div class="jumbotron">
+        <h1><i class="fa fa-camera-retro" aria-hidden="true"></i></span> The Image Gallery </h1>
+        <p>A user supported collection of beautiful images</p> 
+        <p ng-show="vm.isLoggedIn"><a ng-click="vm.addImageModal()" class="btn btn-primary btn-large" data-toggle="modal">Add a New Image To The Gallery</a></p>
+        <p ng-hide="vm.isLoggedIn" ><a href="/#/login?page={{ vm.currentPath }}" class="btn btn-lg btn-primary">Login to Add An Image</a></p>
+</div>
     <div class="row">
         <div class="image-filter text-center">
             <h3>{{ vm.message }}</h3>
