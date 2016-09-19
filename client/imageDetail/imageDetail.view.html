@@ -6,7 +6,7 @@
             <p class="username pull-right">Created By: <a href="#"><strong> {{ vm.data.image.creator }} </strong></a></p>
             <h1></span> {{ vm.data.image.title }}</h1>
             <p class="lead">{{ vm.data.image.description }}</p>
-            <h2><i class="fa fa-heart like-btn" aria-hidden="true"></i>&nbsp;{{ vm.data.image.likes }}</h2>
+            <h2><a href="#"><i class="fa fa-heart like-btn" aria-hidden="true"></i></a> {{ vm.data.image.likes }}</h2>
             <p class="text-muted pull-right">{{ vm.data.image.createdOn | date: 'dd MMMM yyyy' }}</p>
             <button ng-show="vm.isLoggedIn" ng-click="vm.commentModal()" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#commentModal"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
             <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-lg btn-primary">Login to Comment</a>

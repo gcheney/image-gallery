@@ -17,9 +17,6 @@
         };
         
         var addCommentById = function(imageid, commentData) {
-            var headers = {
-                Authorization: 'Bearer ' + authentication.getToken()
-            };
             return $http.post('/api/images/' + imageid + '/comments', commentData, {
                     headers : {
                         Authorization: 'Bearer ' + authentication.getToken()
