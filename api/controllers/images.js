@@ -16,23 +16,24 @@ module.exports.imagesListAll = function (req, res) {
 };
 
 module.exports.imagesCreate = function (req, res) { 
-    console.log(req.body);
     
-    var imageToCreate = {
-        url: req.body.url,
-        creator: req.body.creator,
-        title: req.body.title,
-        description: req.body.description    
-    };
-    
-    Image.create(imageToCreate, function(err, image) {
-        if (err) {
-            console.log(err);
-            sendJsonResponse(res, 400, err);
-        } else {
-            console.log('Created new image: ' + image);
-            sendJsonResponse(res, 201, image);
-        }
+    getCreator(req, res, function(req, res, userName) {
+        var imageToCreate = {
+            url: req.body.url,
+            creator: username,
+            title: req.body.title,
+            description: req.body.description    
+        };
+
+        Image.create(imageToCreate, function(err, image) {
+            if (err) {
+                console.log(err);
+                sendJsonResponse(res, 400, err);
+            } else {
+                console.log('Created new image: ' + image);
+                sendJsonResponse(res, 201, image);
+            }
+        });
     });
 };
 
@@ -119,6 +120,32 @@ module.exports.imagesDeleteOne = function (req, res) {
         });
     }
 };
+
+var getCreator = function(req, res, callback) {
+    if (req.payload && req.payload.username) {
+        User    
+            .findOne({ username: req.payload.username })
+            .exec(function(err, user) {
+                if (!user) {
+                    sendJsonResponse(res, 404, {
+                        "message": "The specified user could not be found"
+                    });
+                    return;
+                } else if (err) {
+                    console.log(err);
+                    sendJsonResponse(res, 404, err);
+                    return;
+                } else {
+                    callback(req, res, user.username);
+                }   
+            });
+    } else {
+        sendJsonResponse(res, 404, {
+            "message": "No user data provided"
+        });
+    }
+}; 
+
 
 var sendJsonResponse = function(res, status, content) {
     res.status(status);
