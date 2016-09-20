@@ -1,7 +1,6 @@
 /*
  * Custom scripts for image-gallery
  */
-
 (function($, W, D)
 { 
     var JQUERY = {};
@@ -12,25 +11,18 @@
         {
             // add image transition on hover
             // now done in angular 
-            $('.image-hover').on('mouseenter mouseleave', function(event) {
-                 if (event.type == 'mouseenter') {
+            $('.image-hover').on('mouseenter mouseleave', function(evt) {
+                 if (evt.type == 'mouseenter') {
                      $(this).addClass('transition');
                  } else  {
                      $(this).removeClass('transition');
                  }
             });
         },
-        toggleLikeBtn: function() 
-        {
-            // like button change
-            $('#btn-like').on('click', function(e){
-                $(this).toggleClass('btn-default');
-                $(this).toggleClass('btn-success');
-            });
-        },
         formatImageDate: function() 
         {
             // format the date for image details page
+            // now done in angular
             var datetext = $('#date').text();
             var date = new Date(datetext);
             
@@ -66,9 +58,8 @@
         
     $(D).ready(function($) {
         //JQUERY.UTIL.imgLinkHover();
-        JQUERY.UTIL.toggleLikeBtn();
-        JQUERY.UTIL.formatImageDate();
-        JQUERY.UTIL.setupLightbox();
+        //JQUERY.UTIL.formatImageDate();
+        //JQUERY.UTIL.setupLightbox();
     });
     
 })(jQuery, window, document);
