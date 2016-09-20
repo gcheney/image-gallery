@@ -18,6 +18,8 @@
         imageGalleryData.getImageById(vm.imageid)
             .success(function(data) {
                 vm.data = { image: data }
+                vm.userIsImageCreator  
+                    = authentication.getCurrentUser().username === vm.data.image.creator;
             })
             .error(function(e) {
                 console.log(e);
