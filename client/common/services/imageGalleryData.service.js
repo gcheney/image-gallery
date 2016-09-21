@@ -32,10 +32,19 @@
             });
         };
         
+        var deleteImageById = function(imageid) {
+            return $http.delete('/api/images/' + imageid, {
+                    headers : {
+                        Authorization: 'Bearer ' + authentication.getToken()
+                    }
+            });
+        };
+        
         return {
             getAllImages: getAllImages,
             getImageById: getImageById,
             addNewImage: addNewImage,
+            deleteImageById: deleteImageById,
             addCommentById: addCommentById
         };   
     }
