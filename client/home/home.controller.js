@@ -38,7 +38,7 @@
             });
             
             modalInstance.result.then(function (newImageData) {
-                vm.data.images.push(newImageData);
+                vm.data.images.unshift(newImageData);
             });
         };
     }
