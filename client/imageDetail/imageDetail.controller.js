@@ -15,7 +15,8 @@
         vm.isLoggedIn = authentication.isLoggedIn();
         vm.currentPath = $location.path();
         
-        imageGalleryData.getImageById(vm.imageid)
+        imageGalleryData
+            .getImageById(vm.imageid)
             .success(function(data) {
                 vm.data = { image: data }
                 vm.userIsImageCreator  
@@ -42,6 +43,17 @@
             modalInstance.result.then(function (newCommentData) {
                 vm.data.image.comments.push(newCommentData);
             });
+        };
+        
+        vm.deleteImage = function() {
+            imageGalleryData
+                .deleteImageById(vm.imageid)
+                .success(function(){
+                    $location.path('/');
+                })
+                .error(function(e) {
+                    console.log(e);
+                });
         };
     }
     

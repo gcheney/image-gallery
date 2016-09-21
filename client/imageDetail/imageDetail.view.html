@@ -8,9 +8,14 @@
             <p class="lead">{{ vm.data.image.description }}</p>
             <h2><a href="#"><i class="fa fa-heart like-btn" aria-hidden="true"></i></a> {{ vm.data.image.likes }}</h2>
             <p class="text-muted pull-right">{{ vm.data.image.createdOn | date: 'dd MMMM yyyy' }}</p>
-            <button ng-show="vm.isLoggedIn" ng-click="vm.commentModal()" class="btn btn-lg btn-primary" data-toggle="modal"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
-            <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-lg btn-primary"><i class="fa fa-comment" aria-hidden="true"></i> Login to Comment</a>
-            <a ng-hide="!vm.isLoggedIn" ng-show="vm.userIsImageCreator" class="btn btn-lg btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
+            <div ng-hide="vm.userIsImageCreator">
+                <button ng-show="vm.isLoggedIn" ng-click="vm.commentModal()" class="btn btn-lg btn-primary" data-toggle="modal"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
+                <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-lg btn-primary"><i class="fa fa-comment" aria-hidden="true"></i> Login to Comment</a>
+            </div>
+            <div ng-show="vm.userIsImageCreator">
+                <a class="btn btn-lg btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                <button ng-click="vm.deleteImage()" class="btn btn-lg btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+            </div>
         </div>
         <div class="image-container">
             <div class="col-md-6 thumbnail">
