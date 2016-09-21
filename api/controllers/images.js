@@ -103,25 +103,32 @@ module.exports.imagesUpdateOne = function (req, res) {
 };
 
 module.exports.imagesDeleteOne = function (req, res) { 
-    var imageid = req.params.imageid;
-    
-    if (imageid) {
-        Image
-            .findByIdAndRemove(imageid)
-            .exec(function(err, image) {
-                if (err) {                 
-                    sendJsonResponse(res, 404, err);
-                    return;
-                } else {
-                    console.log('Image removed: ' + image);
-                    sendJsonResponse(res, 204, null);
-                }
-        });
-    } else {
-        sendJsonResponse(res, 404, {
-            "message": "No image id"
-        });
-    }
+        var imageid = req.params.imageid;
+
+        if (imageid) {
+            Image
+                .findById(imageid)
+                .exec(function(err, image) {
+                    if (req.payload && req.payload.username === image.creator) {         
+                        image.remove(function(err, image){
+                           if (err) {                 
+                                sendJsonResponse(res, 404, err);
+                            } else {
+                                console.log('Image removed: ' + image);
+                                sendJsonResponse(res, 204, null);
+                            } 
+                        });
+                    } else {
+                        sendJsonResponse(res, 403, {
+                            "message": "You do not have permission to make that request"
+                        });
+                    }
+                });
+        } else {
+            sendJsonResponse(res, 404, {
+                "message": "No image id"
+            });
+        }
 };
 
 var getCreator = function(req, res, callback) {
