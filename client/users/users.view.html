@@ -1,0 +1,42 @@
+<navigation></navigation>
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="text-center">
+            <h1><i class="fa fa-camera-retro" aria-hidden="true"></i></span> {{ vm.username }} </h1>
+            <p ng-show="vm.currentUsersAccount"><a ng-click="vm.addImageModal()" class="btn btn-primary btn-lg" data-toggle="modal">Add a New Image</a></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="image-filter text-center">
+            <h3>{{ vm.message }}</h3>
+            <label for="filter">Search Images by {{ vm.username }}: </label> 
+            <input id="filter" type="text" name="filter" ng-model="textFilter">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-repeat="image in vm.data.images | filter: textFilter">
+            <div image-hover class="image-hover">
+                <div class="thumbnail">
+                    <div class="image-wrap">
+                        <a href="/#/images/{{ image._id }}">
+                            <img src="{{ image.url }}">
+                            <div class="image-overlay">
+                                <h3 class="overlay-content">
+                                    <i class="fa fa-comment" aria-hidden="true"></i> {{ image.comments.length}} 
+                                    &nbsp;
+                                    <i class="fa fa-heart" aria-hidden="true"></i> {{ image.likes }}
+                                </h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="image-details">
+                        <a href="/images/{{ image._id }}">{{ image.title }}</a>{{ image.description }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer-basic></footer-basic>
