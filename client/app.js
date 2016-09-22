@@ -19,6 +19,11 @@
                 controller: 'imageDetailController',
                 controllerAs: 'vm'
             })
+            .when('/users/:username', {
+                templateUrl: '/users/users.view.html',
+                controller: 'usersController',
+                controllerAs: 'vm'
+            })
             .when('/register', {
                 templateUrl: '/auth/register/register.view.html',
                 controller: 'registerController',
