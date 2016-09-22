@@ -19,8 +19,10 @@
             .getImageById(vm.imageid)
             .success(function(data) {
                 vm.data = { image: data }
-                vm.userIsImageCreator  
-                    = authentication.getCurrentUser().username === vm.data.image.creator;
+                if (vm.isLoggedIn) {
+                    var creator = vm.data.image.creator;
+                    vm.userIsImageCreator =  isImageCreater(creator);
+                }
             })
             .error(function(e) {
                 console.log(e);
@@ -55,6 +57,10 @@
                     console.log(e);
                 });
         };
+        
+        function isImageCreater(username) {
+            return authentication.getCurrentUser().username === username;
+        }
     }
     
 })();
