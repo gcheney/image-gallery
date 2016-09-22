@@ -26,6 +26,7 @@ var clientFiles = [
     'client/auth/register/register.controller.js',
     'client/auth/login/login.controller.js',
     'client/imageDetail/imageDetail.controller.js',
+    'client/users/users.controller.js',
     'client/commentModal/commentModal.controller.js',
     'client/addImageModal/addImageModal.controller.js',
     'client/common/directives/navigation/navigation.controller.js',
