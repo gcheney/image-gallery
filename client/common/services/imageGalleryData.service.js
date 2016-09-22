@@ -13,7 +13,7 @@
         };
         
         var getImageById = function(imageid) {
-            return $http.get('/api/images/' + imageid)
+            return $http.get('/api/images/' + imageid);
         };
         
         var addNewImage = function(imageData) {
@@ -40,12 +40,17 @@
             });
         };
         
+        var getImagesByUsername = function(username) {
+            return $http.get('/api/images/' + '?user=' + username);
+        }
+        
         return {
             getAllImages: getAllImages,
             getImageById: getImageById,
             addNewImage: addNewImage,
             deleteImageById: deleteImageById,
-            addCommentById: addCommentById
+            addCommentById: addCommentById,
+            getImagesByUsername: getImagesByUsername
         };   
     }
     
