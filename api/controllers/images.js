@@ -3,8 +3,15 @@ var Image = require('../models/image');
 var User = mongoose.model('User');
 
 module.exports.imagesListAll = function (req, res) { 
+    var username = req.query.user;
+    var query = {};
+    
+    if (username) {
+        query = { creator: username }
+    }
+
     Image
-        .find({})
+        .find(query)
         .sort({'createdOn': 'desc'})
         .exec(function(err, images) {
             if (err) {
@@ -12,7 +19,7 @@ module.exports.imagesListAll = function (req, res) {
                 sendJsonResponse(res, 400, err);
                 return;
             }
-        
+            
             sendJsonResponse(res, 200, images);
         });
 };
