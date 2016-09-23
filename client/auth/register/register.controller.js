@@ -23,8 +23,11 @@
         vm.onSubmit = function () {
             vm.formError = "";
             
-            if (!vm.credentials.username || !vm.credentials.password) {
-                vm.formError = "All fields required, please try again";
+            if (!vm.credentials.username) {
+                vm.formError = 'Please enter your new username';
+                return false;
+            } else if (!vm.credentials.password) {
+                vm.formError = 'Please enter your password';
                 return false;
             } else {
                 vm.doRegister();
