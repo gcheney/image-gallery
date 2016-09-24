@@ -96,8 +96,9 @@ module.exports.imagesUpdateOne = function (req, res) {
             }
         
             //update image
-            image.title = req.body.title,
-            image.description = req.body.description,
+            image.title = req.body.title;
+            image.description = req.body.description;
+            image.url = req.body.url;
             
             image.save(function(err, image) {
                 if (err) {
