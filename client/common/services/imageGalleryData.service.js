@@ -16,6 +16,11 @@
             return $http.get('/api/images/' + imageid);
         };
         
+        var getImagesByUsername = function(username) {
+            return $http.get('/api/images/' + '?user=' + username);
+        };
+        
+        
         var addNewImage = function(imageData) {
             return $http.post('/api/images', imageData, {
                     headers : {
@@ -24,8 +29,8 @@
             });
         };
         
-        var addCommentById = function(imageid, commentData) {
-            return $http.post('/api/images/' + imageid + '/comments', commentData, {
+        var updateImageById = function(imageid, imageData) {
+            return $http.put('/api/images/' + imageid, imageData, {
                     headers : {
                         Authorization: 'Bearer ' + authentication.getToken()
                     }
@@ -40,14 +45,19 @@
             });
         };
         
-        var getImagesByUsername = function(username) {
-            return $http.get('/api/images/' + '?user=' + username);
-        }
+        var addCommentById = function(imageid, commentData) {
+            return $http.post('/api/images/' + imageid + '/comments', commentData, {
+                    headers : {
+                        Authorization: 'Bearer ' + authentication.getToken()
+                    }
+            });
+        };
         
         return {
             getAllImages: getAllImages,
             getImageById: getImageById,
             addNewImage: addNewImage,
+            updateImageById: updateImageById,
             deleteImageById: deleteImageById,
             addCommentById: addCommentById,
             getImagesByUsername: getImagesByUsername
