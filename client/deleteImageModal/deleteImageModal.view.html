@@ -1,0 +1,24 @@
+<!-- Add Image Modal -->
+<div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="vm.modal.cancel()">
+               <i class="fa fa-times" aria-hidden="true"></i>
+               <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title">
+            Delete {{ vm.imageData.imageTitle }}?
+        </h4>
+    </div>
+
+    <!-- Add Image Modal Body -->
+    <div class="modal-body">
+        <p>Are you sure you want to delete this image? <b>This operation cannot be undone!</b></p>
+        <form ng-submit="vm.onSubmit()" role="form" id="deleteImage" name="deleteImage" class="form-horizontal">
+            <div class="modal-footer">
+                <button ng-click="vm.modal.cancel()" type="button" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>  Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
