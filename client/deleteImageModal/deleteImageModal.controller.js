@@ -1,12 +1,12 @@
 (function () {
     angular
         .module('imageGalleryApp')
-        .controller('deleteImageModal', deleteImageModal);
+        .controller('deleteImageModalController', deleteImageModalController);
     
-    deleteImageModal.$inject = ['$location', 'authentication', 
+    deleteImageModalController.$inject = ['$location', 'authentication', 
                                 '$modalInstance', 'imageGalleryData', 'imageData'];
     
-    function deleteImageModal ($location, authentication, 
+    function deleteImageModalController($location, authentication, 
                                 $modalInstance, imageGalleryData, imageData) {
         var vm = this;
         vm.imageData = imageData;

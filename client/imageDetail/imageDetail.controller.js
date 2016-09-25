@@ -47,10 +47,31 @@
             });
         };
         
+        vm.updateImageModal = function () {
+            var modalInstance = $modal.open({
+                templateUrl: '/updateImageModal/updateImageModal.view.html',
+                controller: 'updateImageModalController as vm',
+                resolve: {
+                    imageData: function () {
+                        return {
+                            imageid : vm.imageid,
+                            title : vm.data.image.title,
+                            description: vm.data.image.description
+                        };
+                    }
+                }
+            });
+            
+            modalInstance.result.then(function(updatedImageData) {
+                vm.data.image.title = updatedImageData.title;
+                vm.data.image.description = updatedImageData.description;
+            });
+        };
+        
         vm.deleteImageModal = function () {
             var modalInstance = $modal.open({
                 templateUrl: '/deleteImageModal/deleteImageModal.view.html',
-                controller: 'deleteImageModal as vm',
+                controller: 'deleteImageModalController as vm',
                 resolve: {
                     imageData: function () {
                         return {
