@@ -85,28 +85,33 @@ module.exports.imagesUpdateOne = function (req, res) {
     Image
         .findById(imageid)
         .select('-comments -likes')
-        .exec(function(err, image){
-            if (!image) {
+        .exec(function(err, image) {    
+            if (!image) { 
                 sendJsonResponse(res, 404, {
                     "message": "image id not found"
                 });
                 return;
             } else if (err) {
                 sendJsonResponse(res, 400, err);
-            }
+            } 
         
-            //update image
-            image.title = req.body.title;
-            image.description = req.body.description;
-            image.url = req.body.url;
-            
-            image.save(function(err, image) {
-                if (err) {
-                    sendJsonResponse(res, 404, err);
-                } else {
-                    sendJsonResponse(res, 200, image);
-                }
-            });
+            if (req.payload && req.payload.username === image.creator) {    
+                //update image for verified user
+                image.title = req.body.title;
+                image.description = req.body.description;
+
+                image.save(function(err, image) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err);
+                    } else {
+                        sendJsonResponse(res, 200, image);
+                    }
+                });
+            } else {
+                sendJsonResponse(res, 403, {
+                    "message": "You do not have permission to make that request"
+                });
+            }
     });
 };
 
