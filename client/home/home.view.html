@@ -8,10 +8,12 @@
         <p ng-hide="vm.isLoggedIn" ><a href="/#/login?page={{ vm.currentPath }}" class="btn btn-lg btn-primary">Login to Add An Image</a></p>
 </div>
     <div class="row">
-        <div class="image-filter text-center">
-            <h3>{{ vm.message }}</h3>
-            <label for="filter">Search The Gallery: </label> &nbsp;
-            <input id="filter" type="text" name="filter" ng-model="textFilter">
+        <div class="text-center">
+            <div class="image-filter">
+                <h3>{{ vm.message }}</h3>
+                <label for="filter"><h3>Search The Gallery: </h3></label> &nbsp;
+                <input id="filter" type="text" name="filter" ng-model="textFilter">
+            </div>
         </div>
     </div>
     <div class="row">
