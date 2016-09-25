@@ -47,15 +47,19 @@
             });
         };
         
-        vm.deleteImage = function() {
-            imageGalleryData
-                .deleteImageById(vm.imageid)
-                .success(function(){
-                    $location.path('/');
-                })
-                .error(function(e) {
-                    console.log(e);
-                });
+        vm.deleteImageModal = function () {
+            var modalInstance = $modal.open({
+                templateUrl: '/deleteImageModal/deleteImageModal.view.html',
+                controller: 'deleteImageModal as vm',
+                resolve: {
+                    imageData: function () {
+                        return {
+                            imageid : vm.imageid,
+                            imageTitle : vm.data.image.title
+                        };
+                    }
+                }
+            });
         };
         
         function isImageCreater(username) {
