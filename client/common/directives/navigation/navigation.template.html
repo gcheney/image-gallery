@@ -19,7 +19,7 @@
             </ul>
             <ul ng-show="navvm.isLoggedIn" class="nav navbar-nav navbar-right">
                 <li><a href="#">Welcome, {{ navvm.currentUser.username }}!</a></li>
-                <li><a href="/users/{{ navvm.currentUser.username }}">Your Images</a></li>
+                <li><a href="/users/{{ navvm.currentUser.username }}">My Images</a></li>
                 <li><a href="#" ng-click="navvm.logout()">Logout</a></li>
             </ul>
         </div>
