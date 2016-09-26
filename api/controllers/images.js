@@ -115,6 +115,55 @@ module.exports.imagesUpdateOne = function (req, res) {
     });
 };
 
+module.exports.imagesUpdateLikes = function (req, res) { 
+    var imageid = req.params.imageid;
+    if (!imageid) {
+        sendJsonResponse(res, 404, {
+            "message": "image not found, the image id is required"
+        });
+        return;
+    }
+    
+    Image
+        .findById(imageid)
+        .select('likes')
+        .exec(function(err, image) {    
+            if (!image) { 
+                sendJsonResponse(res, 404, {
+                    "message": "image id not found"
+                });
+                return;
+            } else if (err) {
+                sendJsonResponse(res, 400, err);
+            } 
+        
+            if (req.payload && req.payload.username) {   
+                var username = req.payload.username;
+                if (image.likes.indexOf(username) == -1) {
+                    console.log('here');
+                    image.likes.push(username);
+                } else {
+                    var index = image.likes.indexOf(username);
+                    if (index > -1) {
+                        image.likes.splice(index, 1);
+                    }
+                }
+                
+                image.save(function(err, image) {
+                    if (err) {
+                        sendJsonResponse(res, 404, err);
+                    } else {
+                        sendJsonResponse(res, 200, image);
+                    }
+                });
+            } else {
+                sendJsonResponse(res, 404, {
+                    "message": "Username not found. Cannot add like"
+                });
+            }
+    });
+};
+
 module.exports.imagesDeleteOne = function (req, res) { 
         var imageid = req.params.imageid;
 
