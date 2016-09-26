@@ -15,6 +15,7 @@ router.get('/images', imageController.imagesListAll);
 router.post('/images', auth, imageController.imagesCreate);
 router.get('/images/:imageid', imageController.imagesReadOne);
 router.put('/images/:imageid', auth, imageController.imagesUpdateOne);
+router.put('/images/:imageid/likes', auth, imageController.imagesUpdateLikes);
 router.delete('/images/:imageid', auth, imageController.imagesDeleteOne);
 
 // comment api routes
