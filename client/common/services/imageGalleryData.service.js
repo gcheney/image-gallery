@@ -53,6 +53,14 @@
             });
         };
         
+        var updateLikesById = function(imageid, imageData) {
+            return $http.put('/api/images/' + imageid + '/likes', imageData, {
+                    headers : {
+                        Authorization: 'Bearer ' + authentication.getToken()
+                    }
+            });
+        };
+        
         return {
             getAllImages: getAllImages,
             getImageById: getImageById,
@@ -60,7 +68,8 @@
             updateImageById: updateImageById,
             deleteImageById: deleteImageById,
             addCommentById: addCommentById,
-            getImagesByUsername: getImagesByUsername
+            getImagesByUsername: getImagesByUsername,
+            updateLikesById: updateLikesById
         };   
     }
     
