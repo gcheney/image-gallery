@@ -32,9 +32,7 @@ var imageSchema = new mongoose.Schema({
         default: 'Untitled'
     },
     likes: {
-        type: Number,
-        required: true,
-        default: 0
+        type: [String]
     },
     description: { 
         type: String,
