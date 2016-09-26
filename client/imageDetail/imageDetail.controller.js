@@ -22,13 +22,15 @@
                 if (vm.isLoggedIn) {
                     var creator = vm.data.image.creator;
                     vm.userIsImageCreator =  isImageCreater(creator);
+                    var username = getCurrentUsername();
+                    vm.hasLiked = vm.data.image.likes.includes(username);
                 }
             })
             .error(function(e) {
                 console.log(e);
             });
         
-        vm.commentModal = function () {
+        vm.commentModal = function() {
             var modalInstance = $modal.open({
                 templateUrl: '/commentModal/commentModal.view.html',
                 controller: 'commentModalController as vm',
@@ -42,17 +44,17 @@
                 }
             });
             
-            modalInstance.result.then(function (newCommentData) {
+            modalInstance.result.then(function(newCommentData) {
                 vm.data.image.comments.push(newCommentData);
             });
         };
         
-        vm.updateImageModal = function () {
+        vm.updateImageModal = function() {
             var modalInstance = $modal.open({
                 templateUrl: '/updateImageModal/updateImageModal.view.html',
                 controller: 'updateImageModalController as vm',
                 resolve: {
-                    imageData: function () {
+                    imageData: function() {
                         return {
                             imageid : vm.imageid,
                             title : vm.data.image.title,
@@ -68,7 +70,7 @@
             });
         };
         
-        vm.deleteImageModal = function () {
+        vm.deleteImageModal = function() {
             var modalInstance = $modal.open({
                 templateUrl: '/deleteImageModal/deleteImageModal.view.html',
                 controller: 'deleteImageModalController as vm',
@@ -83,8 +85,25 @@
             });
         };
         
+        vm.updateImageLikes = function() {
+            imageGalleryData
+                .updateLikesById(vm.imageid, vm.data)
+                .success(function(data) {
+                    vm.data.image.likes = data.likes;
+                    var username = getCurrentUsername();
+                    vm.hasLiked = vm.data.image.likes.includes(username);
+                })
+                .error(function(e) {
+                    console.log(e);
+                });
+        };
+        
         function isImageCreater(username) {
-            return authentication.getCurrentUser().username === username;
+            return getCurrentUsername() === username;
+        }
+        
+        function getCurrentUsername() {
+            return authentication.getCurrentUser().username;
         }
     }
     
