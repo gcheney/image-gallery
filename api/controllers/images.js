@@ -140,7 +140,6 @@ module.exports.imagesUpdateLikes = function (req, res) {
             if (req.payload && req.payload.username) {   
                 var username = req.payload.username;
                 if (image.likes.indexOf(username) == -1) {
-                    console.log('here');
                     image.likes.push(username);
                 } else {
                     var index = image.likes.indexOf(username);
