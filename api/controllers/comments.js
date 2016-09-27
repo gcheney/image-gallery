@@ -137,7 +137,7 @@ module.exports.commentsDeleteOne = function (req, res) {
            "message": "Comment not found, image id and comment id are both required" 
         });
         return;
-    }
+    } 
     
     Image
         .findById(imageid)
@@ -160,16 +160,26 @@ module.exports.commentsDeleteOne = function (req, res) {
                     sendJsonResponse(res, 404, {
                        "message": "comment not found" 
                     });
-                } else {
-                    commentToDelete.remove();
-                    console.log('Removed comment ' + commentToDelete);
-                    image.save(function(err, image){
-                        if (err) {
-                            sendJsonResponse(res, 404, err);
-                        } else {
-                            sendJsonResponse(res, 204, null);
-                        }
+                } else if (!req.payload && !req.payload.username) { 
+                    sendJsonResponse(res, 404, {
+                        "message": "Username not found. Cannot add like"
                     });
+                } else {
+                    if (commentToDelete.author === req.payload.username) {
+                        commentToDelete.remove();
+                        console.log('Removed comment ' + commentToDelete);
+                        image.save(function(err, image){
+                            if (err) {
+                                sendJsonResponse(res, 404, err);
+                            } else {
+                                sendJsonResponse(res, 204, null);
+                            }
+                        });
+                    } else {
+                        sendJsonResponse(res, 403, {
+                            "message": "You do not have permission to delete this comment"
+                        });
+                    }
                 }
             }
     });
