@@ -86,6 +86,11 @@
         };
         
         vm.updateImageLikes = function() {
+            if (!authentication.isLoggedIn()) {
+                vm.error = 'You need to log in to like an image';
+                return;
+            }
+            
             imageGalleryData
                 .updateLikesById(vm.imageid, vm.data)
                 .success(function(data) {

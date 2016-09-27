@@ -2,13 +2,14 @@
 
 <div class="container">
     <div class="row">
+        <p role="alert" ng-show="vm.error" class="alert alert-danger text-center">{{ vm.error }}</p>
         <div class="jumbotron">
             <p class="username pull-right">Created By: <a href="/users/{{ vm.data.image.creator }}"><strong> {{ vm.data.image.creator }} </strong></a></p>
             <h1></span> {{ vm.data.image.title }}</h1>
             <p class="lead">{{ vm.data.image.description }}</p>
             <p class="text-muted pull-right">{{ vm.data.image.createdOn | date: 'dd MMMM yyyy' }}</p>
             <div ng-hide="vm.userIsImageCreator">
-                <h2 ng-show="vm.isLoggedIn"><a href="#" ng-click="vm.updateImageLikes()"><i class="fa fa-heart like-btn" ng-show="vm.hasLiked" aria-hidden="true"></i><i class="fa fa-heart-o like-btn" ng-hide="vm.hasLiked" aria-hidden="true"></i></a> {{ vm.data.image.likes.length }}</h2>
+                <h2><a href="#" ng-click="vm.updateImageLikes()"><i class="fa fa-heart like-btn" ng-show="vm.hasLiked" aria-hidden="true"></i><i class="fa fa-heart-o like-btn" ng-hide="vm.hasLiked" aria-hidden="true"></i></a> {{ vm.data.image.likes.length }}</h2>
                 <button ng-show="vm.isLoggedIn" ng-click="vm.commentModal()" class="btn btn-lg btn-primary" data-toggle="modal"><i class="fa fa-comment" aria-hidden="true"></i> Comment</button>
                 <a ng-hide="vm.isLoggedIn" href="/#/login?page={{ vm.currentPath }}" class="btn btn-lg btn-primary"><i class="fa fa-comment" aria-hidden="true"></i> Login to Comment</a>
             </div>
