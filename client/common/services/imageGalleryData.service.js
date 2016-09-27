@@ -53,6 +53,15 @@
             });
         };
         
+        var deleteCommentById = function(imageid, commentid) {
+            var url = '/api/images/' + imageid + '/comments/' + commentid;
+            return $http.delete(url, {
+                    headers : {
+                        Authorization: 'Bearer ' + authentication.getToken()
+                    }
+            });
+        };
+        
         var updateLikesById = function(imageid, imageData) {
             return $http.put('/api/images/' + imageid + '/likes', imageData, {
                     headers : {
@@ -68,6 +77,7 @@
             updateImageById: updateImageById,
             deleteImageById: deleteImageById,
             addCommentById: addCommentById,
+            deleteCommentById: deleteCommentById,
             getImagesByUsername: getImagesByUsername,
             updateLikesById: updateLikesById
         };   
