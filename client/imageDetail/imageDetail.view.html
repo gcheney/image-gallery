@@ -25,7 +25,15 @@
             <div class="col-md-6">
                 <div class="scrollable comments-section">
                     <div class="comment" ng-repeat="comment in vm.data.image.comments | orderBy: 'createdOn': true">
-                        <p><a href="/users/{{ comment.author }}" class="username"><strong>{{ comment.author }}</strong></a>&nbsp;<span class="text-muted">({{ comment.createdOn | date: 'dd-mm-yy hh:mm a' }})</span>&nbsp;<span>{{ comment.content }}</span></p>
+                        <p>
+                            <a href="/users/{{ comment.author }}" class="username"><strong>{{ comment.author }}</strong></a>&nbsp;
+                            <span class="text-muted">({{ comment.createdOn | date: 'dd-mm-yy hh:mm a' }})</span>&nbsp;
+                            <span>{{ comment.content }}</span>  
+                            <span ng-show="isCommentAuthor(comment.author)">
+                                <a href="#" class="text-primary">Edit</a> 
+                                <a href="#" class="text-danger" ng-click="deleteComment(comment)">Delete</a>
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>
