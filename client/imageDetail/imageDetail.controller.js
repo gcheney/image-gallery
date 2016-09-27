@@ -4,10 +4,10 @@
         .module('imageGalleryApp')
         .controller('imageDetailController', imageDetailController);
     
-    imageDetailController.$inject = ['$routeParams', '$location', '$modal', 
+    imageDetailController.$inject = ['$scope', '$routeParams', '$location', '$modal', 
                                      'imageGalleryData', 'authentication'];
     
-    function imageDetailController ($routeParams, $location, $modal, 
+    function imageDetailController ($scope, $routeParams, $location, $modal, 
                                      imageGalleryData, authentication) {
         var vm = this;
         
@@ -21,8 +21,8 @@
                 vm.data = { image: data }
                 if (vm.isLoggedIn) {
                     var creator = vm.data.image.creator;
-                    vm.userIsImageCreator =  isImageCreater(creator);
-                    var username = getCurrentUsername();
+                    vm.userIsImageCreator =  userIsContentOwner(creator);
+                    var username = authentication.getCurrentUser().username;;
                     vm.hasLiked = vm.data.image.likes.includes(username);
                 }
             })
@@ -95,7 +95,7 @@
                 .updateLikesById(vm.imageid, vm.data)
                 .success(function(data) {
                     vm.data.image.likes = data.likes;
-                    var username = getCurrentUsername();
+                    var username = authentication.getCurrentUser().username;
                     vm.hasLiked = vm.data.image.likes.includes(username);
                 })
                 .error(function(e) {
@@ -103,12 +103,28 @@
                 });
         };
         
-        function isImageCreater(username) {
-            return getCurrentUsername() === username;
-        }
+        $scope.deleteComment = function(comment) {
+            imageGalleryData
+                .deleteCommentById(vm.imageid, comment._id)
+                .success(function() {
+                    var comments = vm.data.image.comments;
+                    var index = comments.indexOf(comment);
+                    if (index > -1) {
+                        comments.splice(index, 1);
+                    }
+                    vm.data.image.comments = comments;
+                })
+                .error(function(e) {
+                    console.log(e);
+                });
+        };
         
-        function getCurrentUsername() {
-            return authentication.getCurrentUser().username;
+        $scope.isCommentAuthor = function(username) {
+            return authentication.isLoggedIn() ? userIsContentOwner(username) : false;
+        };
+        
+        function userIsContentOwner(username) {
+            return authentication.getCurrentUser().username === username;
         }
     }
     
