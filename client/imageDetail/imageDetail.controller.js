@@ -103,6 +103,31 @@
                 });
         };
         
+        vm.updateCommentModal = function(originalComment) {
+            var modalInstance = $modal.open({
+                templateUrl: '/updateCommentModal/updateCommentModal.view.html',
+                controller: 'updateCommentModalController as vm',
+                resolve: {
+                    imageData: function () {
+                        return {
+                            imageid : vm.imageid,
+                            comment: originalComment
+                        };
+                    }
+                }
+            });
+            
+            modalInstance.result.then(function(updatedCommentData) {
+                var comments = vm.data.image.comments;
+                var index = comments.indexOf(originalComment);
+                if (index !== -1) {
+                    comments[index] = updatedCommentData
+                }
+                vm.data.image.comments = comments;
+                console.log(vm.data.image.comments);
+            });
+        };
+        
         $scope.deleteComment = function(comment) {
             imageGalleryData
                 .deleteCommentById(vm.imageid, comment._id)
