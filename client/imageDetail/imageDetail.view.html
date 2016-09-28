@@ -30,8 +30,8 @@
                             <span class="text-muted">({{ comment.createdOn | date: 'dd-mm-yy hh:mm a' }})</span>&nbsp;
                             <span>{{ comment.content }}</span>  
                             <span ng-show="isCommentAuthor(comment.author)">
-                                <a href="#" class="text-primary">Edit</a> 
-                                <a href="#" class="text-danger" ng-click="deleteComment(comment)">Delete</a>
+                                <a href="#" class="text-primary" ng-click="vm.updateCommentModal(comment)"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
+                                <a href="#" class="text-danger" ng-click="deleteComment(comment)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </span>
                         </p>
                     </div>
