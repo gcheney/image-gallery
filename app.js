@@ -28,6 +28,7 @@ var clientFiles = [
     'client/imageDetail/imageDetail.controller.js',
     'client/users/users.controller.js',
     'client/commentModal/commentModal.controller.js',
+    'client/updateCommentModal/updateCommentModal.controller.js',
     'client/addImageModal/addImageModal.controller.js',
     'client/updateImageModal/updateImageModal.controller.js',
     'client/deleteImageModal/deleteImageModal.controller.js',
