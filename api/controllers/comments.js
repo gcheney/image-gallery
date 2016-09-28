@@ -112,17 +112,27 @@ module.exports.commentsUpdateOne = function (req, res) {
                     sendJsonResponse(res, 404, {
                        "message": "comment not found" 
                     });
-                } else {
-                    commentToUpdate.content = req.body.content;
-                    
-                    image.save(function(err, image){
-                        if (err) {
-                            console.log('Mongo error: ' + err);
-                            sendJsonResponse(res, 404, err);
-                        } else {
-                            sendJsonResponse(res, 200, commentToUpdate);
-                        }
+                } else if (!req.payload && !req.payload.username) { 
+                    sendJsonResponse(res, 404, {
+                        "message": "Username not found. Cannot add like"
                     });
+                } else {
+                    if (commentToUpdate.author === req.payload.username) { 
+                        commentToUpdate.content = req.body.content;
+
+                        image.save(function(err, image){
+                            if (err) {
+                                console.log('Mongo error: ' + err);
+                                sendJsonResponse(res, 404, err);
+                            } else {
+                                sendJsonResponse(res, 200, commentToUpdate);
+                            }
+                        });
+                    } else {
+                        sendJsonResponse(res, 403, {
+                            "message": "You do not have permission to edit this comment"
+                        });
+                    }
                 }
             }
     });
