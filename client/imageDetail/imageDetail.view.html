@@ -23,6 +23,7 @@
                 <a href="{{ vm.data.image.url }}" target="_blank"><img src="{{ vm.data.image.url }}" class="align-left img-responsive" alt="image"></a>
             </div>
             <div class="col-md-6">
+                <h3 class="text-center">Discuss {{ vm.data.image.title }}</h3>
                 <div class="scrollable comments-section">
                     <div class="comment" ng-repeat="comment in vm.data.image.comments | orderBy: 'createdOn': true">
                         <p>
