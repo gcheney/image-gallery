@@ -14,11 +14,15 @@
         vm.message = 'Loading images...';
         vm.isLoggedIn = authentication.isLoggedIn();
         vm.currentPath = $location.path();
+        vm.featuredImage = {};
         
         imageGalleryData.getAllImages()
-            .success(function(data) {
-                vm.message = data.length > 0 ? '' : 'No images found';
-                vm.data = { images: data };
+            .success(function(imageData) {
+                vm.message = imageData.length > 0 ? '' : 'No images found';
+                if (imageData.length % 2 !== 0) {
+                    vm.featuredImage = imageData.shift();
+                }
+                vm.data = { images: imageData };
             })
             .error(function (e) {
                 vm.message = 'Sorry, there was an error with our system';
@@ -39,7 +43,17 @@
             
             modalInstance.result.then(function (newImageData) {
                 vm.data.images.unshift(newImageData);
+                if (vm.data.images.length % 2 !== 0) {
+                    vm.featuredImage = vm.data.images.shift();
+                } else {
+                    vm.data.images.splice(1, 0, vm.featuredImage);
+                    vm.featuredImage = {};
+                }
             });
+        };
+        
+        vm.hasFeaturedImage = function() {
+            return vm.featuredImage.hasOwnProperty('url');
         };
     }
 })();

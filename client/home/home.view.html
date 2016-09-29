@@ -17,6 +17,27 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-10 col-md-offset-1" ng-show="vm.hasFeaturedImage()"> 
+            <div class="well">
+                <h3 class="text-center">Featured Image</h3>
+                <div class="thumbnail">
+                    <div class="image-wrap">
+                        <a href="/#/images/{{ vm.featuredImage._id }}">
+                            <img src="{{ vm.featuredImage.url }}">
+                            <div class="image-overlay">
+                                <h1 class="overlay-content">
+                                    <i class="fa fa-comment" aria-hidden="true"></i> {{ vm.featuredImage.comments.length }} 
+                                    <i class="fa fa-heart" aria-hidden="true"></i> {{ vm.featuredImage.likes.length }}
+                                </h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="image-details">
+                        <a href="/images/{{ image._id }}"><h3>{{ vm.featuredImage.title }}</h3></a>{{ vm.featuredImage.description }}
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-md-6 col-sm-6 col-xs-12" ng-repeat="image in vm.data.images | filter: textFilter">
             <div image-hover class="image-hover">
                 <div class="thumbnail">
