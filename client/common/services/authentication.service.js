@@ -3,9 +3,9 @@
         .module('imageGalleryApp')
         .service('authentication', authentication);
     
-    authentication.$inject = ['$window', '$http'];
+    authentication.$inject = ['$window', '$http', '$route'];
     
-    function authentication($window, $http) {
+    function authentication($window, $http, $route) {
         var saveToken = function(token) {
             $window.localStorage['imageGallery-token'] = token;
         };
@@ -33,6 +33,7 @@
         // delete token to logout user 
         var logout = function() {
             $window.localStorage.removeItem('imageGallery-token');
+            $route.reload();
         };
         
         // returns true or false based on token
