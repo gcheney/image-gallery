@@ -19,7 +19,8 @@
             var username = authentication.getCurrentUser().username;
             imageGalleryData
                 .deleteImageById(imageid)
-                .success(function () {
+                .success(function() {
+                    $modalInstance.close();
                     $location.path('/users/' + username);
                 })
                 .error(function(e) {
@@ -28,7 +29,7 @@
         };
         
         vm.modal = {
-            close: function (newCommentData) {
+            close: function() {
                 $modalInstance.close();
             },
             cancel : function () {
