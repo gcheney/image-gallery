@@ -22,6 +22,9 @@ describe('Images', function() {
             url: 'http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg'
         });
         newImage.save(function(err) {
+            if (err) {
+                console.log(err);
+            }
             done();
         });   
     });
@@ -41,6 +44,11 @@ describe('Images', function() {
                 res.should.have.status(200);
                 res.should.be.json;
                 res.body.should.be.a('array');
+                res.body[0].should.have.property('_id');
+                res.body[0].should.have.property('title');
+                res.body[0].should.have.property('creator');
+                res.body[0].creator.should.equal('Me');
+                res.body[0].title.should.equal('Great Image');
                 done();
             });
     });
