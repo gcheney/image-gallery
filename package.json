@@ -32,5 +32,9 @@
     "path": "^0.12.7",
     "request": "^2.74.0",
     "uglify-js": "^2.7.3"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "chai-http": "^1.0.0"
   }
 }
