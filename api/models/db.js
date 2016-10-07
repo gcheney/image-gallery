@@ -1,9 +1,17 @@
 var mongoose = require('mongoose');
 //var seedDB = require('./seed')
 
-var dbURI = 'mongodb://localhost/image-gallery';
-if (process.env.NODE_ENV === 'production') {
+var dbURI = '';
+
+if (process.env.NODE_ENV === 'test') {
+    dbURI = 'mongodb://localhost/image-gallery-tests';
+    console.log('Using test database');
+} else if (process.env.NODE_ENV === 'production') {
     dbURI = process.env.MONGOLAB_URI;
+    console.log('Using production database');
+} else {
+    dbURI = 'mongodb://localhost/image-gallery';
+    console.log('Using development database');
 }
 mongoose.connect(dbURI);
 
