@@ -93,7 +93,7 @@ describe('Images', function() {
                 if (err) {
                     console.log(err);
                 }
-                res.should.have.status(200);
+                res.should.have.status(201);
                 res.should.be.json;
                 res.body.should.be.a('object');
                 res.body.should.have.property('SUCCESS');
@@ -135,5 +135,27 @@ describe('Images', function() {
             });
         });
     
-    it('should delete a SINGLE image on /images/:id DELETE');
+    it('should delete a SINGLE image on /images/:id DELETE', function(done) {
+        chai.request(app)
+            .get('/api/images')
+            .end(function(err, res) { 
+                if (err) {
+                    console.log(err);
+                }
+                chai.request(app)
+                    .delete('/api/images/' + res.body[0]._id)
+                    .end(function(error, response) {
+                        response.should.have.status(204);
+                        response.should.be.json;
+                        response.body.should.be.a('object');
+                        response.body.should.have.property('REMOVED');
+                        response.body.REMOVED.should.be.a('object');
+                        response.body.REMOVED.should.have.property('title');
+                        response.body.REMOVED.should.have.property('_id');
+                        response.body.REMOVED.name.should.equal('Great Image');
+                        done();
+                    });
+            });
+    });
+    
 });
