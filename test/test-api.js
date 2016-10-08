@@ -107,6 +107,33 @@ describe('Images', function() {
                 done();
             });
     });
-    it('should update a SINGLE image on /images/:id PUT');
+    
+    it('should update a SINGLE image on /images/:id PUT', function(done) {
+        chai.request(app)
+            .get('/api/images')
+            .end(function(err, res) {
+                if (err) {
+                    console.log(err);
+                }
+                chai.request(app)
+                    .put('/api/images/'+res.body[0]._id)
+                    .send({'title': 'Updated Title'})
+                    .end(function(error, response) {
+                        if (error) {
+                            console.log(err);
+                        }
+                        response.should.have.status(200);
+                        response.should.be.json;
+                        response.body.should.be.a('object');
+                        response.body.should.have.property('UPDATED');
+                        response.body.UPDATED.should.be.a('object');
+                        response.body.UPDATED.should.have.property('title');
+                        response.body.UPDATED.should.have.property('_id');
+                        response.body.UPDATED.title.should.equal('Updated Title');
+                        done();
+                    });
+            });
+        });
+    
     it('should delete a SINGLE image on /images/:id DELETE');
 });
