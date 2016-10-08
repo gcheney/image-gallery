@@ -52,7 +52,33 @@ describe('Images', function() {
                 done();
             });
     });
-    it('should list a SINGLE image on /images/:id GET');
+    
+    it('should list a SINGLE image on /images/:id GET', function(done) {
+        var newImage = new Image({
+            title: 'Single Image',
+            description: 'The second best image',
+            creator: 'Everyone',
+            url: 'http://theinfobay.com/wp-content/uploads/2014/04/20494_138338332984307_1682284487_n.jpg'
+        });
+        
+        newImage.save(function(err, data) {
+            chai.request(app)
+                .get('/api/images/' + data.id)
+                .end(function(err, res){
+                    res.should.have.status(200);
+                    res.should.be.json;
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('_id');
+                    res.body.should.have.property('title');
+                    res.body.should.have.property('description');
+                    res.body.title.should.equal('Single Image');
+                    res.body.creator.should.equal('Everyone');
+                    res.body._id.should.equal(data.id);
+                    done();
+                });
+        });
+    });
+    
     it('should add a SINGLE image on /images POST', function(done) {
         var newImage = new Image({
             title: 'Second Image',
