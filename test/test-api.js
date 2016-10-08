@@ -15,13 +15,13 @@ describe('Images', function() {
     Image.collection.drop();
 
     beforeEach(function(done) {
-        var newImage = new Image({
+        var defaultImage = new Image({
             title: 'Great Image',
             description: 'The best image',
             creator: 'Me',
             url: 'http://cdn2-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-8.jpg'
         });
-        newImage.save(function(err) {
+        defaultImage.save(function(err) {
             if (err) {
                 console.log(err);
             }
@@ -53,7 +53,34 @@ describe('Images', function() {
             });
     });
     it('should list a SINGLE image on /images/:id GET');
-    it('should add a SINGLE image on /images POST');
+    it('should add a SINGLE image on /images POST', function(done) {
+        var newImage = new Image({
+            title: 'Second Image',
+            description: 'The second best image',
+            creator: 'Us',
+            url: 'http://theinfobay.com/wp-content/uploads/2014/04/20494_138338332984307_1682284487_n.jpg'
+        });
+        chai.request(app)
+            .post('/api/images')
+            .send(JSON.stringify(newImage))
+            .end(function(err, res) {
+                if (err) {
+                    console.log(err);
+                }
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+                res.body.should.have.property('SUCCESS');
+                res.body.SUCCESS.should.be.a('object');
+                res.body.SUCCESS.should.have.property('title');
+                res.body.SUCCESS.should.have.property('description');
+                res.body.SUCCESS.should.have.property('url');
+                res.body.SUCCESS.should.have.property('_id');
+                res.body.SUCCESS.creator.should.equal('Us');
+                res.body.SUCCESS.title.should.equal('Second Image');
+                done();
+            });
+    });
     it('should update a SINGLE image on /images/:id PUT');
     it('should delete a SINGLE image on /images/:id DELETE');
 });
