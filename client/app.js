@@ -2,7 +2,7 @@
 
     angular.module('imageGalleryApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap']);
 
-    function config ($routeProvider, $locationProvider) {
+    function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'home/home.view.html',
@@ -33,8 +33,9 @@
                 templateUrl: '/auth/login/login.view.html',
                 controller: 'loginController',
                 controllerAs: 'vm'
-            })
-            .otherwise({redirectTo: '/'});
+            });
+            
+        $routeProvider.otherwise({redirectTo: '/'});
         
         $locationProvider.html5Mode(true);
     }
