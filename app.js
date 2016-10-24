@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var logger = require('morgan');
+var compress = require('compression');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var uglifyJs = require('uglify-js');
@@ -56,10 +57,16 @@ fs.writeFile('public/angular/imageGalleryApp.min.js', uglifiedFiles.code, functi
 // set app port
 var PORT = process.env.PORT || 3000;
 
+// use logging in development and compression in production
+if (process.env.NODE_ENV === 'development') {
+    app.use(logger('dev'));
+} else if (process.env.NODE_ENV === 'production') {
+    app.use(compress());
+}
+
 //app setup
-app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
