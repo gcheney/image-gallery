@@ -28,7 +28,7 @@
                     <div class="comment" ng-repeat="comment in vm.data.image.comments | orderBy: 'createdOn': true">
                         <p>
                             <a href="/users/{{ comment.author }}" class="username"><strong>{{ comment.author }}</strong></a>&nbsp;
-                            <span class="text-muted">({{ comment.createdOn | date: 'dd-MM-yy hh:mm a' }})</span>&nbsp;
+                            <span class="text-muted">({{ comment.createdOn | date: 'MM-dd-yy hh:mm a' }}):</span>&nbsp;
                             <span>{{ comment.content }}</span>  
                             <span ng-show="isCommentAuthor(comment.author)">
                                 <a href="#" class="text-primary" ng-click="vm.updateCommentModal(comment)"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
