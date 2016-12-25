@@ -20,7 +20,9 @@
         </div>
         <div class="image-container">
             <div class="col-md-6 thumbnail">
-                <a href="{{ vm.data.image.url }}" target="_blank"><img src="{{ vm.data.image.url }}" class="align-left img-responsive" alt="image"></a>
+                <a href="{{ vm.data.image.url }}" target="_blank">
+                    <img src="{{ vm.data.image.url }}" class="align-left img-responsive" alt="{{ vm.data.image.description }}">
+                </a>
             </div>
             <div class="col-md-6">
                 <h3 class="text-center">Discuss {{ vm.data.image.title }}</h3>

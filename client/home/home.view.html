@@ -13,7 +13,7 @@
             <div class="thumbnail">
                 <div class="image-wrap">
                     <a href="/#/images/{{ vm.featuredImage._id }}">
-                        <img src="{{ vm.featuredImage.url }}">
+                        <img src="{{ vm.featuredImage.url }}" alt="{{ vm.featuredImage.description }}">
                         <div class="image-overlay">
                             <h1 class="overlay-content">
                                 <i class="fa fa-comment" aria-hidden="true"></i> {{ vm.featuredImage.comments.length }} 
@@ -39,7 +39,7 @@
                 <div class="thumbnail">
                     <div class="image-wrap">
                         <a href="/#/images/{{ image._id }}">
-                            <img src="{{ image.url }}">
+                            <img src="{{ image.url }}" alt="{{ image.description }}">
                             <div class="image-overlay">
                                 <h1 class="overlay-content">
                                     <i class="fa fa-comment" aria-hidden="true"></i> {{ image.comments.length}} 
