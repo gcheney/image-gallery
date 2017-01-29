@@ -129,9 +129,9 @@ app.use(function(err, req, res, next) {
 // *********** LISTEN ********************** //
 
 app.listen(PORT, function(req, res) {
-    console.log("App server is listening on port " + PORT); 
+    console.log('App server is listening on port ' + PORT); 
     if (app.get('env') === 'development') {
-        console.log("http://127.0.0.1:3000");
+        console.log('http://127.0.0.1:3000');
     }
 });
 
