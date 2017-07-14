@@ -1,6 +1,9 @@
 {
   "name": "image-link-gallery",
   "version": "1.0.0",
+  "engines": {
+    "node": "4.8.4"
+  },
   "description": "A site for storing and commenting on linked images.",
   "main": "app.js",
   "scripts": {
